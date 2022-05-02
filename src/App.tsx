@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+import { Container } from 'react-bootstrap';
+import { MsalProvider } from '@azure/msal-react'
+import { IPublicClientApplication } from '@azure/msal-browser';
+import NewEvent from './NewEvent';
+import ProvideAppContext from './AppContext';
+import ErrorMessage from './ErrorMessage';
+import NavBar from './NavBar';
+import Welcome from './Welcome';
+import Calendar from './Calendar';
+import 'bootstrap/dist/css/bootstrap.css';
+
+type AppProps= {
+  pca: IPublicClientApplication
+};
+
+export default function App({ pca }: AppProps) {
+  return(
+    <MsalProvider instance={ pca }>
+      <ProvideAppContext>
+        <Router>
+          <div>
+            <NavBar />
+            <Container>
+              <ErrorMessage />
+              <Routes>
+              <Route path="/"
+                element= {<Welcome />}/>
+                <Route path="/Calendar"
+                element= {<Calendar path={''} />}/>
+                <Route path="/NewEvent"
+                element= {<NewEvent path={''} />}/>
+               </Routes>
+            </Container>
+          </div>
+          
+        </Router>
+      
+      </ProvideAppContext>
+    </MsalProvider>
   );
 }
-
-export default App;
