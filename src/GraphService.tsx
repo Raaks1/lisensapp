@@ -2,8 +2,10 @@ import { Client, GraphRequestOptions, PageCollection, PageIterator } from '@micr
 import { AuthCodeMSALBrowserAuthenticationProvider } from '@microsoft/microsoft-graph-client/authProviders/authCodeMsalBrowser';
 import { endOfWeek, startOfWeek } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
-import { User, Event } from '@microsoft/microsoft-graph-types-beta';
-import { LicenseDetails, ServicePlanInfo } from '@microsoft/microsoft-graph-types';
+import { User, Event } from '@microsoft/microsoft-graph-types';
+import {  AssignedLicense, LicenseDetails, SubscribedSku } from '@microsoft/microsoft-graph-types';
+import { useState } from 'react';
+
 
 let graphClient: Client | undefined = undefined;
 
@@ -18,16 +20,30 @@ function ensureClient(authProvider: AuthCodeMSALBrowserAuthenticationProvider) {
 }
 
 export async function getUser(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<User> {
+  
   ensureClient(authProvider);
 
+  
+  
+
   // Return the /me API endpoint result as a User object
-  const user: User = await graphClient!.api('/me')
+  const user: User = await graphClient!.api('https://graph.microsoft.com/v1.0/me')
     // Only retrieve the specific fields needed
-    .select('displayName,mail,mailboxSettings,userPrincipalName,id')
+    /*.select('id, skuId,skuPartNumber ')*/
+  
+    
+
+
     
     .get();
 
+   
+
+   
+  console.log(user);
   return user;
+  
+
 }
 
 
@@ -97,65 +113,58 @@ return await graphClient!
 export async function getLicense(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<LicenseDetails> {
     ensureClient(authProvider);
   
-    const license: LicenseDetails = await graphClient!.api('https://graph.microsoft.com/v1.0/users/{45a51149-1d3c-4924-bd2e-545b4a65c2db}/licenseDetails?$select=id,servicePlans,skuId,skuPartNumber')
+    const license: LicenseDetails = await graphClient!.api('https://graph.microsoft.com/v1.0/user/licenseDetails')
      /*.header('Authorization', `Bearer ${token}`)*/
-     /*.select('id,servicePlans,skuId,skuPartNumber')*/
+     .select('id,servicePlans,skuId,skuPartNumber')
       .get();
   
     return license;
   }
 
-  export async function getLisens(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<User> {
+  export async function getLisens(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<SubscribedSku> {
     ensureClient(authProvider);
   
-  const lisens: User = await graphClient!.api('https://graph.microsoft.com/v1.0/subscribedSkus?$select=SKUPartNumber,skuId')
+  const lisens: SubscribedSku = await graphClient!.api('https://graph.microsoft.com/v1.0/subscribedSkus')
    /* .header('Authorization', `Bearer ${token}`)*/
       
    
       .get();
-
+console.log(lisens);
     return lisens;
   }
 
 
-  export async function getServicePlan(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<ServicePlanInfo> {
+ /* export async function getServicePlan(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<ServicePlanInfo> {
     ensureClient(authProvider);
   
   const serviceplan: ServicePlanInfo = await graphClient!.api('https://graph.microsoft.com/v1.0/users/{45a51149-1d3c-4924-bd2e-545b4a65c2db}/licenseDetails?$select=servicePlanId,servicePlanName,appliesTo,skuId,skuPartNumber,provisioningStatus')
-   /* .header('Authorization', `Bearer ${token}`)*/
+   /* .header('Authorization', `Bearer ${token}`)
       
    
       .get();
 
     return serviceplan;
-  }
+  }*/
 
-  export async function getAssigned(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<User> {
-    ensureClient(authProvider);
+
   
+
+  
+
+  
+  export async function getUsers(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<User[]> {
+    ensureClient(authProvider);
+   
     // Return the /me API endpoint result as a User object
-    const assigned: User = await graphClient!.api('https://graph.microsoft.com/v1.0/users/{45a51149-1d3c-4924-bd2e-545b4a65c2db}/licenseDetails ')
+    const users: {value: User[]} = await graphClient!.api('https://graph.microsoft.com/v1.0/users')
       // Only retrieve the specific fields needed
      
       
       .get();
-  
-    return assigned;
+    console.log(users);
+    return users?.value;
   }
-  
+
+
 
   
-
-  
-  export async function getUsers(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<User> {
-    ensureClient(authProvider);
-  
-    // Return the /me API endpoint result as a User object
-    const users: User = await graphClient!.api('https://graph.microsoft.com/v1.0/users?$filter=assignedLicenses/any(s:s/skuId eq d201f153-d3b2-4057-be2f-fe25c8983e6f)')
-      // Only retrieve the specific fields needed
-     
-      
-      .get();
-  
-    return users;
-  }

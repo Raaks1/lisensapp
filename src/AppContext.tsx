@@ -1,4 +1,4 @@
-import { getUser, getLicense, getLisens, getServicePlan, getAssigned } from './GraphService';
+import {  getUser, getLicense, getLisens, getUsers} from './GraphService';
 import React, {
     useContext,
     createContext,
@@ -10,40 +10,41 @@ import React, {
   import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
   import { useMsal } from '@azure/msal-react';
 import config from './Config';
+import { User } from '@microsoft/microsoft-graph-types';
+/*import { User } from '@microsoft/microsoft-graph-types';*/
+
 
 
   
 
 
 
-export interface Users {
-  assignedLicenses?: any,
+export interface AppU{
+  displayName?: string | string[],
+  value?:any[] | null[] | undefined[],
+ 
+  [index: number]: { id: number; displayName: string; key: any };
+ 
 }
 
 
 
-export interface assignedUser {
-  assignedLicenses?: any,
-}
-
-
-
-export interface ServicePlan {
+/*export interface ServicePlan {
     appliesTo?: string;
     provisioningStatus?:string,
     servicePlanId?: string,
     servicePlanName?: string,
 
 
-}
+}*/
 
 
 export interface LisensUser {
     servicePlans?:any,
-    skuid?: string,
-    skuPartNumber?: string,
+    skuId?: any,
+    skuPartNumber?: any,
     id?: string
-    licenseDetails?: any,
+    
   }
 
 
@@ -57,9 +58,8 @@ export interface LicenseUser {
    }
 
 
-  export interface AppUser {
-    displayName?: string,
-    email?: string,
+  export interface AppUser { 
+    displayName?:any,
     avatar?: string,
     timeZone?: string,
     timeFormat?: string,
@@ -68,6 +68,13 @@ export interface LicenseUser {
     jobTitle?: string,
     mobilePhone?: any,
     postalCode?: any,
+    licenseDetails?: any,
+    skuId?: any,
+    assignedLicenses?: any,
+    
+    
+   
+  
 
   };
   
@@ -77,11 +84,14 @@ export interface LicenseUser {
   };
   
   type AppContext = {
+   
+   
     user?: AppUser;
-    assigned?:assignedUser;
+    users?: User[];
+   
     license?:LicenseUser;
     lisens?: LisensUser;
-    serviceplan?:ServicePlan
+   /* serviceplan?:ServicePlan*/
     error?: AppError;
     signIn?: MouseEventHandler<HTMLElement>;
     signOut?: MouseEventHandler<HTMLElement>;
@@ -91,11 +101,11 @@ export interface LicenseUser {
   }
   
   const appContext = createContext<AppContext>({
-    user: undefined,
-    assigned:undefined,
-    serviceplan: undefined,
+    user: undefined, 
+    users: undefined,
+   /* serviceplan: undefined,*/
     license: undefined,
-    lisens: undefined,
+    lisens:undefined,
     error: undefined,
     signIn: undefined,
     signOut: undefined,
@@ -129,8 +139,9 @@ export interface LicenseUser {
     const [error, setError] = useState<AppError | undefined>(undefined);
     const [license, setLicense] = useState<LicenseUser | undefined>(undefined);
     const [lisens, setLisens] = useState<LisensUser | undefined>(undefined);
-    const [serviceplan, setServicePlan] = useState<ServicePlan | undefined>(undefined);
-    const [assigned, setAssigned] = useState<assignedUser | undefined>(undefined);
+   /* const [serviceplan, setServicePlan] = useState<ServicePlan | undefined>(undefined);*/
+ 
+    const [users, setUsers] = useState<User[] | undefined>(undefined);
 
 
     useEffect(() => {
@@ -141,21 +152,32 @@ export interface LicenseUser {
               const account = msal.instance.getActiveAccount();
               if (account) {
                 // Get the user from Microsoft Graph
-                const user = await getUser(authProvider);
+               const user = await getUser(authProvider);
+
+                
       
-                setUser({
-                  displayName: user.displayName || '',
-                  email: user.mail || user.userPrincipalName || '',
-                  timeFormat: user.mailboxSettings?.timeFormat || 'h:mm a',
-                  timeZone: user.mailboxSettings?.timeZone || 'UTC',
-                  id: user.id || '',
-                  userPrincipalName: user.userPrincipalName || '',
-                  jobTitle: user.jobTitle || '',
-                  mobilePhone: user.mobilePhone || '',
-
+              setUser({
+                displayName: user.displayName || 'ERROR',
+              
+                timeFormat: user.mailboxSettings?.timeFormat || 'h:mm a',
+                timeZone: user.mailboxSettings?.timeZone || 'UTC',
+                id: user.id || '',
+                userPrincipalName: user.userPrincipalName || '',
+                jobTitle: user.jobTitle || '',
+                mobilePhone: user.mobilePhone || '',
+                licenseDetails: user.licenseDetails || '',
                
+              
+              
+            
 
-                });
+             
+
+              });
+              
+
+               const users = await getUsers(authProvider) || [];
+                setUsers(users);
 
                 const license = await getLicense(authProvider);
                 setLicense({
@@ -165,18 +187,19 @@ export interface LicenseUser {
                     id: license.id || '',
                     
 
-                })
+                });
 
                 const lisens = await getLisens(authProvider);
                 setLisens({
-                    licenseDetails: lisens.licenseDetails || '',
+                   skuId: lisens.skuId || '',
                     id: lisens.id || '',
+                    skuPartNumber: lisens.skuPartNumber || '',
                  
-                })
+                });
                    
                    
             
-                const serviceplan = await getServicePlan(authProvider);
+              /*  const serviceplan = await getServicePlan(authProvider);
                 setServicePlan({
                     appliesTo: serviceplan.appliesTo || '',
                     provisioningStatus: serviceplan.provisioningStatus || '',
@@ -184,12 +207,15 @@ export interface LicenseUser {
                     servicePlanName: serviceplan.servicePlanName || '',
                    
                    
-                })
+                });
 
                 const assigned = await getAssigned(authProvider);
                 setAssigned({
                   assignedLicenses: assigned.assignedLicenses || '',
-                })
+                });*/
+
+
+              
 
                
               }
@@ -200,6 +226,8 @@ export interface LicenseUser {
         };
         checkUser();
       },[]);
+
+      
 
 
   
@@ -214,7 +242,7 @@ export interface LicenseUser {
     }
   
     // Used by the Graph SDK to authenticate API calls
-const authProvider = new AuthCodeMSALBrowserAuthenticationProvider(
+    const authProvider = new AuthCodeMSALBrowserAuthenticationProvider(
     msal.instance as PublicClientApplication,
     {
       account: msal.instance.getActiveAccount()!,
@@ -234,7 +262,7 @@ const authProvider = new AuthCodeMSALBrowserAuthenticationProvider(
   
     setUser({
       displayName: user.displayName || '',
-      email: user.mail || user.userPrincipalName || '',
+    
       timeFormat: user.mailboxSettings?.timeFormat || '',
       timeZone: user.mailboxSettings?.timeZone || 'UTC',
     
@@ -255,11 +283,13 @@ const authProvider = new AuthCodeMSALBrowserAuthenticationProvider(
     const lisens = await getLisens(authProvider);
 
     setLisens({
-        licenseDetails: lisens.licenseDetails || '',
+        id: lisens.id || '',
+        skuId: lisens.skuId || '',
+
        
-    })
+    });
     
-    const serviceplan = await getServicePlan(authProvider);
+  /*  const serviceplan = await getServicePlan(authProvider);
     setServicePlan({
         appliesTo: serviceplan.appliesTo || '',
         provisioningStatus: serviceplan.provisioningStatus || '',
@@ -267,20 +297,21 @@ const authProvider = new AuthCodeMSALBrowserAuthenticationProvider(
         servicePlanName: serviceplan.servicePlanName || '',
        
        
-    })
+    })*/
 
-    const assigned = await getAssigned(authProvider);
-                setAssigned({
-                  assignedLicenses: assigned.assignedLicenses || '',
-                })
+    
+
+   /* const users = await getUsers(authProvider);
+                setUsers({
+                   displayName:  || '',
+                
+                })*/
 
     
 
   };
   
-    // TEMPORARY: Show the access token
-  /*  displayError('Access token retrieved', result.accessToken);
-  };*/
+  
   
   const signOut = async () => {
     await msal.instance.logoutPopup();
@@ -289,9 +320,10 @@ const authProvider = new AuthCodeMSALBrowserAuthenticationProvider(
   
     return {
       user,
+      users,
       license,
-      assigned,
-      serviceplan,
+     
+     /* serviceplan,*/
       lisens,
       error,
       signIn,
@@ -300,4 +332,4 @@ const authProvider = new AuthCodeMSALBrowserAuthenticationProvider(
       clearError,
       authProvider
     };
-}
+  }

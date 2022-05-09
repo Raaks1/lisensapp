@@ -9,6 +9,7 @@ import ErrorMessage from './ErrorMessage';
 import NavBar from './NavBar';
 import Welcome from './Welcome';
 import Calendar from './Calendar';
+import { Brukere } from './Brukere';
 import 'bootstrap/dist/css/bootstrap.css';
 
 type AppProps= {
@@ -27,6 +28,7 @@ export default function App({ pca }: AppProps) {
               <Routes>
               <Route path="/"
                 element= {<Welcome />}/>
+              
                 <Route path="/Calendar"
                 element= {<Calendar path={''} />}/>
                 <Route path="/NewEvent"

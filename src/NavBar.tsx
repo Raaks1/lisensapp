@@ -52,7 +52,7 @@ export default function NavBar() {
               <AuthenticatedTemplate>
                 <NavDropdown title={<UserAvatar user={user} />} id="user-dropdown" align="end">
                   <h5 className="dropdown-item-text mb-0">{user.displayName}</h5>
-                  <p className="dropdown-item-text text-muted mb-0">{user.email}</p>
+               
                   <Dropdown.Divider />
                   <Dropdown.Item onClick={app.signOut!}>Sign Out</Dropdown.Item>
                 </NavDropdown>
