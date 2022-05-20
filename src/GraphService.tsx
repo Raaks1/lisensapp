@@ -2,9 +2,10 @@ import { Client, GraphRequestOptions, PageCollection, PageIterator } from '@micr
 import { AuthCodeMSALBrowserAuthenticationProvider } from '@microsoft/microsoft-graph-client/authProviders/authCodeMsalBrowser';
 import { endOfWeek, startOfWeek } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
-import { User, Event } from '@microsoft/microsoft-graph-types';
+import { User, Event, AssignedPlan } from '@microsoft/microsoft-graph-types';
 import {  AssignedLicense, LicenseDetails, SubscribedSku } from '@microsoft/microsoft-graph-types';
 import { useState } from 'react';
+
 
 
 let graphClient: Client | undefined = undefined;
@@ -53,9 +54,7 @@ ensureClient(authProvider);
 
 // Generate startDateTime and endDateTime query params
 // to display a 7-day window
-const now = new Date();
-const startDateTime = zonedTimeToUtc(startOfWeek(now), timeZone).toISOString();
-const endDateTime = zonedTimeToUtc(endOfWeek(now), timeZone).toISOString();
+
 
 // GET /me/calendarview?startDateTime=''&endDateTime=''
 // &$select=subject,organizer,start,end
@@ -64,7 +63,7 @@ const endDateTime = zonedTimeToUtc(endOfWeek(now), timeZone).toISOString();
 var response: PageCollection = await graphClient!
 .api('/me/calendarview')
 .header('Prefer', `outlook.timezone="${timeZone}"`)
-.query({ startDateTime: startDateTime, endDateTime: endDateTime })
+.query({  })
 .select('subject,organizer,start,end')
 .orderby('start/dateTime')
 .top(25)
@@ -113,7 +112,7 @@ return await graphClient!
 export async function getLicense(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<LicenseDetails> {
     ensureClient(authProvider);
   
-    const license: LicenseDetails = await graphClient!.api('https://graph.microsoft.com/v1.0/user/licenseDetails')
+    const license: LicenseDetails = await graphClient!.api('https://graph.microsoft.com/v1.0/me/licenseDetails')
      /*.header('Authorization', `Bearer ${token}`)*/
      .select('id,servicePlans,skuId,skuPartNumber')
       .get();
@@ -121,17 +120,32 @@ export async function getLicense(authProvider: AuthCodeMSALBrowserAuthentication
     return license;
   }
 
-  export async function getLisens(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<SubscribedSku> {
+  export async function getLisens(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<SubscribedSku[]> {
     ensureClient(authProvider);
   
-  const lisens: SubscribedSku = await graphClient!.api('https://graph.microsoft.com/v1.0/subscribedSkus')
+  const lisens: {value: SubscribedSku[]} = await graphClient!.api('https://graph.microsoft.com/v1.0/subscribedSkus')
    /* .header('Authorization', `Bearer ${token}`)*/
       
    
       .get();
 console.log(lisens);
-    return lisens;
+    return lisens?.value;
   }
+
+
+
+  export async function getPlans(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<AssignedPlan[]> {
+    ensureClient(authProvider);
+  
+  const plans: {value: AssignedPlan[]} = await graphClient!.api('https://graph.microsoft.com/v1.0/me/assignedPlans')
+   /* .header('Authorization', `Bearer ${token}`)*/
+      
+   
+      .get();
+console.log(plans);
+    return plans?.value;
+  }
+
 
 
  /* export async function getServicePlan(authProvider: AuthCodeMSALBrowserAuthenticationProvider): Promise<ServicePlanInfo> {
@@ -156,7 +170,10 @@ console.log(lisens);
     ensureClient(authProvider);
    
     // Return the /me API endpoint result as a User object
-    const users: {value: User[]} = await graphClient!.api('https://graph.microsoft.com/v1.0/users')
+    const users: {value: User[]} = await graphClient!.api('https://graph.microsoft.com/beta/users?'
+    )
+
+    .select('id,displayName,assignedLicenses,assignedPlans,userPrincipalName')
       // Only retrieve the specific fields needed
      
       

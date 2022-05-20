@@ -1,15 +1,16 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes,  } from 'react-router-dom';
 
 import { Container } from 'react-bootstrap';
 import { MsalProvider } from '@azure/msal-react'
 import { IPublicClientApplication } from '@azure/msal-browser';
-import NewEvent from './NewEvent';
+
 import ProvideAppContext from './AppContext';
 import ErrorMessage from './ErrorMessage';
 import NavBar from './NavBar';
-import Welcome from './Welcome';
-import Calendar from './Calendar';
-import { Brukere } from './Brukere';
+import Licences from './Licenses';
+import AssignedPlans from './AssignedPlans';
+import Search from './Search'
+
 import 'bootstrap/dist/css/bootstrap.css';
 
 type AppProps= {
@@ -27,12 +28,15 @@ export default function App({ pca }: AppProps) {
               <ErrorMessage />
               <Routes>
               <Route path="/"
-                element= {<Welcome />}/>
+                element= {<Licences />}/>
+
+                 <Route path="/Search"
+                element= {<Search/>}/>
+
+                <Route path="/AssignedPlans"
+                element= {<AssignedPlans/>}/>
               
-                <Route path="/Calendar"
-                element= {<Calendar path={''} />}/>
-                <Route path="/NewEvent"
-                element= {<NewEvent path={''} />}/>
+            
                </Routes>
             </Container>
           </div>

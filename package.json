@@ -9,7 +9,7 @@
     "@microsoft/mgt-msal2-provider": "^2.4.0",
     "@microsoft/mgt-react": "^2.4.0",
     "@microsoft/microsoft-graph-client": "^3.0.2",
-    "@microsoft/microsoft-graph-types": "^2.19.0",
+    "@microsoft/microsoft-graph-types": "^2.20.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",

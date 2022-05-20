@@ -18,7 +18,7 @@ interface UserAvatarProps {
 function UserAvatar(props: UserAvatarProps) {
   // If a user avatar is available, return an img tag with the pic
   return <img
-      src={props.user.avatar || 'no-profile-photo.png'} alt="user"
+      src={props.user.avatar || "no-profile-photo.png"} alt="user"
       className="rounded-circle align-self-center mr-2"
       style={{ width: '32px' }}></img>;
 }
@@ -30,25 +30,24 @@ export default function NavBar() {
   return (
       <Navbar bg="success" variant="dark" expand="md" fixed="top">
         <Container>
-          <Navbar.Brand href="/">React Graph</Navbar.Brand>
+          <Navbar.Brand href="/">All Users</Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Nav className="me-auto" navbar>
+            <AuthenticatedTemplate>
               <NavItem>
-                <RouterNavLink to="/" className="nav-link">Home</RouterNavLink>
+               <RouterNavLink to="/Search" className="nav-link">Search</RouterNavLink>
               </NavItem>
-              <AuthenticatedTemplate>
-                <NavItem>
-                  <RouterNavLink to="/calendar" className="nav-link">Calendar</RouterNavLink>
-                </NavItem>
               </AuthenticatedTemplate>
+              <AuthenticatedTemplate>
+              <NavItem>
+               <RouterNavLink to="/Assignedplans" className="nav-link">My info</RouterNavLink>
+              </NavItem>
+              </AuthenticatedTemplate>
+           
             </Nav>
             <Nav className="ms-auto align-items-center" navbar>
-              <NavItem>
-                <Nav.Link href="https://developer.microsoft.com/graph/docs/concepts/overview" target="_blank">
-                  Docs
-                </Nav.Link>
-              </NavItem>
+              
               <AuthenticatedTemplate>
                 <NavDropdown title={<UserAvatar user={user} />} id="user-dropdown" align="end">
                   <h5 className="dropdown-item-text mb-0">{user.displayName}</h5>

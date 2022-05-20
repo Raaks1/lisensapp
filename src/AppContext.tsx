@@ -1,16 +1,20 @@
-import {  getUser, getLicense, getLisens, getUsers} from './GraphService';
+import {  getUser, getLicense, getLisens, getUsers, getPlans} from './GraphService';
 import React, {
     useContext,
     createContext,
     useState,
     MouseEventHandler,
-    useEffect} from 'react';
+    useEffect,
+    ReactChild,
+    ReactChildren} from 'react';
   
   import { AuthCodeMSALBrowserAuthenticationProvider } from '@microsoft/microsoft-graph-client/authProviders/authCodeMsalBrowser';
   import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
   import { useMsal } from '@azure/msal-react';
 import config from './Config';
-import { User } from '@microsoft/microsoft-graph-types';
+import { SubscribedSku, User, AssignedPlan } from '@microsoft/microsoft-graph-types';
+import { getOutputFileNames } from 'typescript';
+
 /*import { User } from '@microsoft/microsoft-graph-types';*/
 
 
@@ -39,14 +43,22 @@ export interface AppU{
 }*/
 
 
-export interface LisensUser {
-    servicePlans?:any,
+/*export interface LisensUser {
+  subscribedSku?: any[],
+    servicePlans?:any[],
     skuId?: any,
     skuPartNumber?: any,
-    id?: string
+    id?: any,
     
-  }
+  }*/
+export interface AssignedPlans {
+  service?: any,
+  servicePlanId?: any,
+  assignedDateTime?: string,
+  capabilityStatus?: string,
 
+
+}
 
 
 export interface LicenseUser {
@@ -61,16 +73,17 @@ export interface LicenseUser {
   export interface AppUser { 
     displayName?:any,
     avatar?: string,
-    timeZone?: string,
-    timeFormat?: string,
-    userPrincipalName?: string
+   
+    userPrincipalName?: any,
     id?: any,
     jobTitle?: string,
-    mobilePhone?: any,
-    postalCode?: any,
+   
     licenseDetails?: any,
     skuId?: any,
     assignedLicenses?: any,
+    assignedPlan?: any[],
+  
+  
     
     
    
@@ -88,9 +101,9 @@ export interface LicenseUser {
    
     user?: AppUser;
     users?: User[];
-   
+    plan?: AssignedPlan[];
     license?:LicenseUser;
-    lisens?: LisensUser;
+    lisens?: SubscribedSku[];
    /* serviceplan?:ServicePlan*/
     error?: AppError;
     signIn?: MouseEventHandler<HTMLElement>;
@@ -103,6 +116,7 @@ export interface LicenseUser {
   const appContext = createContext<AppContext>({
     user: undefined, 
     users: undefined,
+    plan: undefined,
    /* serviceplan: undefined,*/
     license: undefined,
     lisens:undefined,
@@ -132,16 +146,16 @@ export interface LicenseUser {
   }
 
 
-
   function useProvideAppContext() {
     const msal = useMsal();
-    const [user, setUser] = useState<AppUser | undefined>(undefined);
-    const [error, setError] = useState<AppError | undefined>(undefined);
-    const [license, setLicense] = useState<LicenseUser | undefined>(undefined);
-    const [lisens, setLisens] = useState<LisensUser | undefined>(undefined);
+    const [user, setUser] = useState<AppUser | undefined>();
+    const [error, setError] = useState<AppError | undefined>();
+    const [license, setLicense] = useState<LicenseUser | undefined>();
+    const [lisens, setLisens] = useState<SubscribedSku[]| undefined>();
+    const [plans, setPlans] = useState<AssignedPlan[]| undefined>();
    /* const [serviceplan, setServicePlan] = useState<ServicePlan | undefined>(undefined);*/
  
-    const [users, setUsers] = useState<User[] | undefined>(undefined);
+    const [users, setUsers] = useState<User[] | undefined>();
 
 
     useEffect(() => {
@@ -159,13 +173,14 @@ export interface LicenseUser {
               setUser({
                 displayName: user.displayName || 'ERROR',
               
-                timeFormat: user.mailboxSettings?.timeFormat || 'h:mm a',
-                timeZone: user.mailboxSettings?.timeZone || 'UTC',
+              
                 id: user.id || '',
                 userPrincipalName: user.userPrincipalName || '',
                 jobTitle: user.jobTitle || '',
-                mobilePhone: user.mobilePhone || '',
+                
                 licenseDetails: user.licenseDetails || '',
+                assignedPlan: user.assignedPlans || [],
+              
                
               
               
@@ -189,13 +204,12 @@ export interface LicenseUser {
 
                 });
 
-                const lisens = await getLisens(authProvider);
-                setLisens({
-                   skuId: lisens.skuId || '',
-                    id: lisens.id || '',
-                    skuPartNumber: lisens.skuPartNumber || '',
+                const lisens = await getLisens(authProvider) || [];
+                setLisens(lisens);
                  
-                });
+                 
+                const plans = await getPlans(authProvider) ||[]
+                setPlans(plans);
                    
                    
             
@@ -263,8 +277,7 @@ export interface LicenseUser {
     setUser({
       displayName: user.displayName || '',
     
-      timeFormat: user.mailboxSettings?.timeFormat || '',
-      timeZone: user.mailboxSettings?.timeZone || 'UTC',
+    
     
     });
 
@@ -280,14 +293,14 @@ export interface LicenseUser {
 
     })
 
-    const lisens = await getLisens(authProvider);
+  /*  const lisens = await getLisens(authProvider);
 
     setLisens({
         id: lisens.id || '',
         skuId: lisens.skuId || '',
 
        
-    });
+    });*/
     
   /*  const serviceplan = await getServicePlan(authProvider);
     setServicePlan({
@@ -322,6 +335,7 @@ export interface LicenseUser {
       user,
       users,
       license,
+      plans,
      
      /* serviceplan,*/
       lisens,

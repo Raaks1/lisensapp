@@ -6,23 +6,27 @@ import {
   import { BrowserRouterProps , HashRouterProps} from 'react-router-dom';
   import { AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
   import { useAppContext } from './AppContext';
-import { ReactElement, JSXElementConstructor, ReactFragment, Fragment } from 'react';
+import { Fragment } from 'react';
+import './Licences.css'
+
 
 
 
   
-  export default function Welcome(props: HashRouterProps) {
+  export default function Licenses(_props: HashRouterProps) {
     const app = useAppContext();
     const users = app?.users || [];
+    
    
   
     return (
       <div className="p-5 mb-4 bg-light rounded-3">
         <Container fluid>
-          <h1>Microsoft API Graph </h1>
+          <h1>Microsoft 365 Licenses </h1>
           <p className="lead">
-             Users Microsoft details
+             Users subscription information
           </p>
+
           <AuthenticatedTemplate>
 
 
@@ -50,18 +54,25 @@ style={{ width: '100%' }}>
            
            
             <Card.Header>
-            <h5>User Info:</h5></Card.Header>
+            <h5>User Details:</h5></Card.Header>
             <Card.Body >  <p><Card.Title>Name:</Card.Title> {user?.displayName}</p>
-              <p><Card.Title>Id:</Card.Title> {user?.id}</p>
-              
+                          <p><Card.Title>UserPrincipalName:</Card.Title> {user?.userPrincipalName}</p>   
+              <p key={user.id}><Card.Title>User id:</Card.Title> {user?.id} </p>
+            
+       {/* <p>  {app.user?.assignedPlans?.map(plan=> plan.service).join(', ')}</p>  
+         
+        { <p> <Card.Title><h6>Service:</h6></Card.Title> {app.user?.map(user => (<Fragment key={user.id}>
+        {app.user?.assignedPlans?.map(plan=> plan.service).join(', ')}</Fragment>))}</p>} */}
              
-              { <p><Card.Title>License:</Card.Title> {user?.licenseDetails?.map(license => (<Fragment key={license.id}>
-              <p>Serviceplan: {license.servicePlans?.map(plan=> plan.servicePlanName).join(', ')}</p>
-              <p>SkuId: {license.skuId}</p>
-              <p>SkuPartNumber: {license.skuPartNumber}</p>
-          
-              <p>Id: {license.id}</p>
-              </Fragment>))}</p> }
+             <p><Card.Title>Commercial Subscriptions:</Card.Title> {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
+  
+  <p className='serviceplan'><h6>ServiceplanInfo:</h6> <span className='plans'> {lisens.servicePlans?.map(({servicePlanName, servicePlanId, appliesTo}) =>(<p key={servicePlanId}>ServicePlanName: {servicePlanName}, ServicePlanId: {servicePlanId}, AppliesTo: {appliesTo} </p>))}
+ </span></p>
+ <p><h6>SkuId:</h6> {lisens.skuId} (The unique identifier for the SKU.)</p>
+  <p><h6>SkuPartNumber:</h6> {lisens.skuPartNumber}</p>
+  <p><h6>Id:</h6> {lisens.id}</p>
+  
+</Fragment>))}</p> 
              
              
               </Card.Body>
