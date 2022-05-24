@@ -6,6 +6,7 @@ import {
   Container,
   Card
 } from 'react-bootstrap';
+import './UserComponent.css';
 
 
 
@@ -15,14 +16,20 @@ const UserComponent = (props: { user: ISearch }) => {
   const { user } = props;
   const app = useAppContext();
  
+ 
+ 
 
   return (
+
+    <Card>
+      <Card.Header><h2 className="head">Search Results:</h2></Card.Header>
     <div className="user">
-      <div className="displayName">
-        <p>{user.displayName}</p>
-      
-      </div>
-       <p><h6>User Id:</h6>{user.id}</p>
+     
+        <p> <h3>Name:</h3> <span className="details">{user.displayName}</span></p>
+        <p><h3>User Id:</h3><span className="details"> {user.id}</span></p>  
+    
+     
+        
     
 
      
@@ -52,24 +59,28 @@ const UserComponent = (props: { user: ISearch }) => {
      
           
  
- <p><Card.Title>Commercial Subscriptions:</Card.Title> {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
-              <p><h6>SkuId:</h6> {lisens.skuId} (The unique identifier for the SKU.)</p>
-              <p><h6>SkuPartNumber:</h6> {lisens.skuPartNumber}</p>
-              <p><h6>Id:</h6> {lisens.id}</p>
+ <p><Card.Header> <h3 className="head">Commercial Subscriptions:</h3></Card.Header> {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
+        <div className="margin">     <p><h5>SkuId:</h5> {lisens.skuId} (The unique identifier for the SKU.)</p>
+              <p><h5>SkuPartNumber:</h5> {lisens.skuPartNumber}</p>
+              <p><h5>Id:</h5> {lisens.id}</p>  </div> 
   
-              <p className='serviceplan'><h6>ServiceplanInfo:</h6> <span className='plans'> {lisens.servicePlans?.map(({servicePlanName, servicePlanId, appliesTo}) =>(<p key={servicePlanId}>ServicePlanName: {servicePlanName}, ServicePlanId: {servicePlanId}, AppliesTo: {appliesTo} </p>))}
-             </span></p>
-             
+             <Card.Header><h3 className="head">ServiceplanInfo:</h3></Card.Header> {lisens.servicePlans?.map(({servicePlanName, servicePlanId, appliesTo}) =>(<p key={servicePlanId}><span id="test">ServicePlanName: </span>{servicePlanName}, <span id="test">ServicePlanId:</span> {servicePlanId}, AppliesTo: {appliesTo} </p>))}
+           
               
         </Fragment>))}</p> 
-      
-    {/* <p><h6>Assigned Plans:  </h6>
+   {/*  <p><h6>Assigned Plans:  </h6>
       
       {user.assignedPlan && <pre>{JSON.stringify(user.assignedPlan, undefined, 2)}</pre>}</p>  
  <p><h6>Commerical subscriptions:</h6>
-{user.subscribedSku && <pre>{JSON.stringify(user.subscribedSku, undefined, 2)}</pre>}</p>*/}
+ {user.subscribedSku && <pre>{JSON.stringify(user.subscribedSku, undefined, 2)}</pre>}</p> */}
+
+
+
+
+
   
     </div> 
+    </Card>
   );
 }; 
 

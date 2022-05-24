@@ -26,6 +26,7 @@ export interface ISearch {
     subscribedSku: SubscribedSku;
     licenseDetails?: LicenseDetails;
     plan:AssignedPlan[];
+    
 
 
 
@@ -55,6 +56,7 @@ export default function SearchUser(_props: BrowserRouterProps) {
     const { authProvider } = useAppContext();
 
     const searchForUsers = async (query: string): Promise<ISearch[]> => {
+      try {
         if (authProvider !== undefined) {
             const graphClient = ensureClient(authProvider);
             const result = await graphClient.api(`https://graph.microsoft.com/v1.0/users/`).get();
@@ -77,30 +79,45 @@ export default function SearchUser(_props: BrowserRouterProps) {
             console.log({resultsWithLicenses})
             return resultsWithLicenses;
         }
+        
+      }
+      catch (err) {
+        console.error(err)
+        alert('resultat error')
+      };
         return [];
-    }
+    };
 
 
     useEffect(() => {
+      try {
         (async () => {
             const query = encodeURIComponent(userSearch);
             if (query) {
             const response = await searchForUsers(query);
             setUserFound(response);
             }
+           
         
         })();
    
-    
-},[userSearch,searchForUsers]);
+      } catch (err) {
+        console.error(err)
+        alert('error')
+      };
+},[userSearch]);
 
 const search = (event: FormEvent<HTMLFormElement>) => {
+  try{
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const input = form.querySelector('#searchText') as HTMLInputElement;
     setUserSearch(input.value);
     input.value = '';
-   
+  } catch (err) {
+    console.error(err)
+    alert('error')
+  };
 };
 
 
@@ -112,6 +129,7 @@ return (
             <button>Search</button>
             </form>
             {userSearch && <p>Results for {userSearch}:</p>}
+           
 
             <>
  {/* {[
@@ -135,14 +153,18 @@ text="dark"
         {userFound?.length > 0 &&
           userFound.map(user =>
             (<UserComponent key={user.id} user={user}></UserComponent>))
+         
         }
         
+        
+        </div>
+        
+        </>
       </div>
 
    
    
-       </>
-      </div>
+      
      
 )
 

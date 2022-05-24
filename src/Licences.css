@@ -1,3 +1,85 @@
 
+* {
+    font-family: 'Montserrat';
+   
+}
+
+
+.header {
+    font-weight: 800;
+}
+h6 {
+    font-weight: 600;
+  
+    font-family: 'Montserrat';
+    color:rgb(51, 7, 170);
+
+}
+
+
+.coms {
+    font-weight: 600;
+    color: rgb(224, 72, 21);
+}
+
+.head {
+    font-weight: 600;;
+}
+
+ .h5 {
+    font-weight:800;
+    font-family: 'Montserrat';
+    color:rgb(227, 198, 9)
+
+
+ }
+
+ .spanners {
+
+     color:rgba(0, 0, 0, 0.733);
+     background-color: rgb(248, 248, 248);
+     font-weight: 600;
+     margin: auto;
+    
+ }
+
+.leads{
+    font-weight: 600;;
+    font-size: large;
+}
+
+
+ .spans {
+     color: teal;
+     border: 2px none solid;
+     background-color: lightgrey;
+     border-radius: 5px;
+     padding: 5px 5px;
+     margin: 5px;
+
+ }
+
+ .spanns {
+    color: rgb(235, 137, 9);
+    border: 2px none solid;
+    background-color: lightgrey;
+    border-radius: 5px;
+    padding: 5px 5px;
+    margin: 5px;
+
+}
+
+
+.desc {
+    font-weight: 600;
+    padding: 5px 5px;
+    margin-top: 10px;;
+    
+}
+
+.lead {
+    padding: 5px 5px;
+    
+}
 
 

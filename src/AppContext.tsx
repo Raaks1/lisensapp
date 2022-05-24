@@ -1,4 +1,4 @@
-import {  getUser, getLicense, getLisens, getUsers, getPlans} from './GraphService';
+import {  getUser, getLicense, getLisens, getUsers, getPlans, getLisensForUser, getOrg} from './GraphService';
 import React, {
     useContext,
     createContext,
@@ -12,16 +12,16 @@ import React, {
   import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
   import { useMsal } from '@azure/msal-react';
 import config from './Config';
-import { SubscribedSku, User, AssignedPlan } from '@microsoft/microsoft-graph-types';
-import { getOutputFileNames } from 'typescript';
+import { SubscribedSku, User, AssignedPlan, Organization } from '@microsoft/microsoft-graph-types';
 
-/*import { User } from '@microsoft/microsoft-graph-types';*/
+
+
 
 
 
   
 
-
+type LicenceFromUserIdFn = (id:string) => Promise<AssignedPlan[]>
 
 export interface AppU{
   displayName?: string | string[],
@@ -97,8 +97,9 @@ export interface LicenseUser {
   };
   
   type AppContext = {
+  
    
-   
+    org?: Organization[];
     user?: AppUser;
     users?: User[];
     plan?: AssignedPlan[];
@@ -111,12 +112,15 @@ export interface LicenseUser {
     displayError?: Function;
     clearError?: Function;
     authProvider?: AuthCodeMSALBrowserAuthenticationProvider;
+
+   getSingleUserLicence?: LicenceFromUserIdFn;
   }
   
   const appContext = createContext<AppContext>({
     user: undefined, 
     users: undefined,
     plan: undefined,
+    org: undefined,
    /* serviceplan: undefined,*/
     license: undefined,
     lisens:undefined,
@@ -125,7 +129,8 @@ export interface LicenseUser {
     signOut: undefined,
     displayError: undefined,
     clearError: undefined,
-    authProvider: undefined
+    authProvider: undefined,
+   getSingleUserLicence: undefined,
   });
   
   export function useAppContext(): AppContext {
@@ -154,7 +159,7 @@ export interface LicenseUser {
     const [lisens, setLisens] = useState<SubscribedSku[]| undefined>();
     const [plans, setPlans] = useState<AssignedPlan[]| undefined>();
    /* const [serviceplan, setServicePlan] = useState<ServicePlan | undefined>(undefined);*/
- 
+    const [org, setOrg] = useState<Organization[]| undefined>();
     const [users, setUsers] = useState<User[] | undefined>();
 
 
@@ -211,7 +216,8 @@ export interface LicenseUser {
                 const plans = await getPlans(authProvider) ||[]
                 setPlans(plans);
                    
-                   
+                 const org = await getOrg(authProvider) || []
+                 setOrg(org);  
             
               /*  const serviceplan = await getServicePlan(authProvider);
                 setServicePlan({
@@ -330,12 +336,16 @@ export interface LicenseUser {
     await msal.instance.logoutPopup();
     setUser(undefined);
   };
+
+  
+  const getSingleUserLicence: LicenceFromUserIdFn = getLisensForUser(authProvider);
   
     return {
       user,
       users,
       license,
       plans,
+      org,
      
      /* serviceplan,*/
       lisens,
@@ -344,6 +354,8 @@ export interface LicenseUser {
       signOut,
       displayError,
       clearError,
-      authProvider
+      authProvider,
+
+      getSingleUserLicence
     };
   }

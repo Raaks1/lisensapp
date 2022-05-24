@@ -1,3 +1,19 @@
-.serviceplan { font-weight: 400;
-   
+.plann {
+    font-weight: 600;
+    color: black;
 }
+
+.header {
+    font-weight: 600;
+    
+}
+
+.detail {
+    font-weight: 600;
+}
+
+
+.details {
+    font-weight: 600;
+}
+

@@ -9,6 +9,7 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-reac
 import { useAppContext } from './AppContext';
 import { Fragment } from 'react';
 import './Assignedplans.css'
+import CardHeader from 'react-bootstrap/esm/CardHeader';
 
 
 
@@ -39,32 +40,32 @@ style={{ width: '100%' }}>
 <div>
      
       <Card.Header>
-      <h5 className='Header'>User Details:</h5></Card.Header>
+      <h2 className="header">User Details:</h2></Card.Header>
 
       <Card.Body > 
          
-      <p><Card.Title>Name:</Card.Title> {app.user?.displayName}</p>
-      <p><Card.Title>UserPrincipalName:</Card.Title> {app.user?.userPrincipalName}</p>  
-<p key={app.user?.id}><Card.Title>User id:</Card.Title> {app.user?.id} </p>
+      <p> <h3>Name:</h3> {app.user?.displayName}</p>
+      <p ><h4>UserPrincipalName:</h4> {app.user?.userPrincipalName}</p>  
+      <p key={app.user?.id}><h5>User id:</h5> {app.user?.id} </p>
       
 
    
-  { <p> <Card.Title><h5>Service:</h5></Card.Title> {app.plan?.map(plan => (<Fragment key={plan?.service}>
+ {/*} { <p> <Card.Title><h5>Service:</h5></Card.Title> {app.plan?.map(plan => (<Fragment key={plan?.servicePlanId}>
  <p> {plan?.service}</p>
  <p> {plan?.servicePlanId}</p>
- <p> {plan?.assignedDateTime}</p>
+ <p> {plan?.capabilityStatus}</p>
  <p> {plan?.assignedDateTime}</p>
  
- </Fragment>))}</p>}
+ </Fragment>))}</p>}*/}
        
- <p><Card.Title>Commercial Subscriptions:</Card.Title> {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
-  <p><h6>SkuId:</h6> {lisens.skuId} (The unique identifier for the SKU.)</p>
-  <p><h6>SkuPartNumber:</h6> {lisens.skuPartNumber}</p>
-  <p><h6>Id:</h6> {lisens.id}</p>
+ <p><Card.Header><h4 className='header'>Commercial Subscriptions:</h4></Card.Header> {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
+  <p><span className='detail'>SkuId:</span> {lisens.skuId} (The unique identifier for the SKU.)</p>
+  <p><span className='detail'>SkuPartNumber:</span> {lisens.skuPartNumber}</p>
+  <p><span className='detail'>Id:</span> {lisens.id}</p>
   
-  <p className='serviceplan'><h6>ServiceplanInfo:</h6> <span className='plans'> {lisens.servicePlans?.map(({servicePlanName, servicePlanId, appliesTo}) =>(<p key={servicePlanId}>
-  ServicePlanName: {servicePlanName}, ServicePlanId: {servicePlanId}, AppliesTo: {appliesTo} </p>))}
- </span></p>
+ <Card.Header> <h4 className='header'>ServiceplanInfo:</h4> </Card.Header> {lisens.servicePlans?.map(({servicePlanName, servicePlanId, appliesTo}) =>(<p key={servicePlanId}>
+    <span className='plann'>  ServicePlanName:</span> {servicePlanName},<span className='plann'> ServicePlanId:</span> {servicePlanId} {/* AppliesTo: {appliesTo}*/} </p>))}
+ 
  
   
 </Fragment>))}</p> 

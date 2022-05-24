@@ -1,0 +1,36 @@
+.plans {
+    padding: 5px 5px;
+    margin: 25px 25px;
+    font-family: 'Times New Roman', Times, serif;
+    color: teal;
+    border: 2px solid red;
+}
+
+.test {
+    font-size: large;
+    font-weight: 500;
+    color: red;
+}
+
+#test {
+    color: black;
+    font-weight: 600;
+}
+
+.details {
+    font-weight: 400;
+
+}
+
+.head {
+    color: black;
+    font-weight: 400;
+}
+
+.head {
+    font-weight: 800;
+}
+
+.margin {
+    margin-top: 15px;
+}

@@ -9,7 +9,8 @@ import ErrorMessage from './ErrorMessage';
 import NavBar from './NavBar';
 import Licences from './Licenses';
 import AssignedPlans from './AssignedPlans';
-import Search from './Search'
+import Search from './Search';
+import Organization from './Organization'
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -35,6 +36,9 @@ export default function App({ pca }: AppProps) {
 
                 <Route path="/AssignedPlans"
                 element= {<AssignedPlans/>}/>
+
+               <Route path="/Organization"
+                element= {<Organization/>}/>
               
             
                </Routes>

@@ -1,4 +1,5 @@
 .Search {
+  
     padding: 50px 100px;
     color:rgb(5, 5, 5);
   }
@@ -7,6 +8,7 @@
     border: 2px solid rgb(15, 152, 86, 0.7);
     padding: 10px;
     font-size: 18px;
+   /* border-radius: 10px;*/
   }
   
   .searchForm button {
@@ -18,7 +20,7 @@
   }
 
   .searchForm button:hover {
-    background-color: rgba(9, 62, 136, 0.7);
+    background-color: rgba(1, 1, 1, 0.7);
     color: rgb(255, 255, 255);
     padding: 12px;
     font-size: 18px;
@@ -29,6 +31,7 @@
     margin: 10px 0;
     display: flex;
     flex-wrap: wrap;
+    background-color: rgba(16, 200, 16, 0.288);
   }
   
   .user {

@@ -44,6 +44,11 @@ export default function NavBar() {
                <RouterNavLink to="/Assignedplans" className="nav-link">My info</RouterNavLink>
               </NavItem>
               </AuthenticatedTemplate>
+              <AuthenticatedTemplate>
+              <NavItem>
+               <RouterNavLink to="/Organization" className="nav-link">Organization</RouterNavLink>
+              </NavItem>
+              </AuthenticatedTemplate>
            
             </Nav>
             <Nav className="ms-auto align-items-center" navbar>

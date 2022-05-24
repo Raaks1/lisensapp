@@ -1,0 +1,17 @@
+#service {
+    margin-top: 25px;
+   
+    
+    font-weight: 600;
+   
+}
+.plan{
+    color: blue;
+}
+
+.header {
+    text-align: left;
+    padding: 5px 5px;
+    font-weight: 600;
+    margin-top: 5px;
+}
