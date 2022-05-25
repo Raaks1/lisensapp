@@ -128,7 +128,7 @@ return (
             <input id="searchText" type="text" placeholder="Search for user" />
             <button>Search</button>
             </form>
-            {userSearch && <p>Results for {userSearch}:</p>}
+            {userSearch && <p className="resultat">Results for {userSearch}:</p>}
            
 
             <>

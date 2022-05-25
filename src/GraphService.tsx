@@ -78,12 +78,12 @@ export async function getLisens(
 
 export const getLisensForUser =
   (authProvider: AuthCodeMSALBrowserAuthenticationProvider) =>
-  async (userId: string): Promise<AssignedPlan[]> => {
+  async (userId: string): Promise<SubscribedSku[]> => {
     ensureClient(authProvider);
 
-    type TheDataType = { value: Array<{ assignPlans: AssignedPlan[] }> };
+    type TheDataType = { value: Array<{ assignPlans: SubscribedSku[] }> };
     const lisens: TheDataType = await graphClient!
-      .api(`https://graph.microsoft.com/v1.0/Organization/`)
+      .api(`https://graph.microsoft.com/v1.0/subscribedSkus/`)
       /* .header('Authorization', `Bearer ${token}`)*/
 
       .get();

@@ -7,6 +7,7 @@ import {
   Card
 } from 'react-bootstrap';
 import './UserComponent.css';
+import { AuthenticatedTemplate } from "@azure/msal-react";
 
 
 
@@ -20,17 +21,26 @@ const UserComponent = (props: { user: ISearch }) => {
  
 
   return (
+<AuthenticatedTemplate>
+    <>
 
-    <Card>
-      <Card.Header><h2 className="head">Search Results:</h2></Card.Header>
-    <div className="user">
-     
-        <p> <h3>Name:</h3> <span className="details">{user.displayName}</span></p>
-        <p><h3>User Id:</h3><span className="details"> {user.id}</span></p>  
+    <Card className="cards"
+    border="light" 
+
+    bg="light"
     
-     
-        
+    text="dark"
+    style={{ width: '100%' }}> 
+
+      <Card.Header className="heedsone"><h3 className="head">Search results:</h3></Card.Header>
+      
+    <Card.Body className="cards">
+        <p><h3>Name: </h3><span className="details">{user.displayName}</span></p>
+        <p><h4>User Id:</h4><span className="details"> {user.id}</span></p>  
     
+   
+        </Card.Body>
+ 
 
      
   
@@ -56,18 +66,20 @@ const UserComponent = (props: { user: ISearch }) => {
             
 </div>))}</p> */}
 
-     
-          
+
  
- <p><Card.Header> <h3 className="head">Commercial Subscriptions:</h3></Card.Header> {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
-        <div className="margin">     <p><h5>SkuId:</h5> {lisens.skuId} (The unique identifier for the SKU.)</p>
-              <p><h5>SkuPartNumber:</h5> {lisens.skuPartNumber}</p>
-              <p><h5>Id:</h5> {lisens.id}</p>  </div> 
-  
-             <Card.Header><h3 className="head">ServiceplanInfo:</h3></Card.Header> {lisens.servicePlans?.map(({servicePlanName, servicePlanId, appliesTo}) =>(<p key={servicePlanId}><span id="test">ServicePlanName: </span>{servicePlanName}, <span id="test">ServicePlanId:</span> {servicePlanId}, AppliesTo: {appliesTo} </p>))}
-           
-              
-        </Fragment>))}</p> 
+ <p><Card.Header className="heedsone"> <h3 className="head">Commercial subscriptions:</h3></Card.Header> {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
+<Card.Body className="cards">
+    <p><span className='detail'>SkuId:</span> {lisens.skuId} (The unique identifier for the SKU.)</p>
+     <p><span className='detail'>SkuPartNumber:</span> {lisens.skuPartNumber}</p>
+     <p><span className='detail'>Id:</span> {lisens.id}</p></Card.Body>
+       
+     <Card.Header className="heedsone"> <h3 className="head">ServiceplanInfo:</h3></Card.Header>
+  <Card.Body className="cards">  <p>
+     {lisens.servicePlans?.map(({ servicePlanName, servicePlanId, appliesTo }) => (<p key={servicePlanId}><span id="test">ServicePlanName: </span>{servicePlanName}, <span id="test">ServicePlanId:</span> {servicePlanId}, AppliesTo: {appliesTo} </p>))}
+     </p></Card.Body> 
+
+   </Fragment>))}</p> 
    {/*  <p><h6>Assigned Plans:  </h6>
       
       {user.assignedPlan && <pre>{JSON.stringify(user.assignedPlan, undefined, 2)}</pre>}</p>  
@@ -77,10 +89,14 @@ const UserComponent = (props: { user: ISearch }) => {
 
 
 
+ 
 
   
-    </div> 
+  
+ 
     </Card>
+    </>
+    </AuthenticatedTemplate>
   );
 }; 
 

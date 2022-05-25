@@ -87,7 +87,7 @@ export default function Licenses(_props: HashRouterProps) {
 
         <AuthenticatedTemplate>
           <>
-            {[
+          {/*}  {[
               "Primary",
               "Secondary",
               "Success",
@@ -96,66 +96,68 @@ export default function Licenses(_props: HashRouterProps) {
               "Info",
               "Light",
               "Dark",
-            ].map((variant) => (
+            ].map((variant) => (*/}
               <Card
-                border="none"
+                border=""
                 bg="light"
-                key={variant}
+              
                 text="dark"
                 style={{ width: "100%" }}
               >
                 {users?.map((user) => (
                   <div key={user.id}>
-                    <Card.Header>
-                      <h5 className="desc">User Details:</h5>
+                    <Card.Header className="heedsone">
+                      <h4 className="desc">User Details:</h4>
                     </Card.Header>
-                    <Card.Body>
+                    <Card.Body className="cards">
                       <p>
-                        <span className="leads">Name:</span> {user?.displayName}
+                        <h4>Name:</h4> {user?.displayName}
                       </p>
                       <p>
-                        <Card.Title>
-                          <span className="leads">UserPrincipalName:</span>
-                        </Card.Title>{" "}
+                        
+                          <h5>UserPrincipalName: </h5>
+                       
                         {user?.userPrincipalName}
                       </p>
                       <p key={user.id}>
-                        <Card.Title>
-                          <span className="leads">User id:</span>
-                        </Card.Title>{" "}
+                        
+                          <h5>User id: </h5>
+                       
                         {user?.id}{" "}
-                      </p>
+                      </p></Card.Body>
 
                       {/* <p>  {app.user?.assignedPlans?.map(plan=> plan.service).join(', ')}</p>  
          
         { <p> <Card.Title><h6>Service:</h6></Card.Title> {app.user?.map(user => (<Fragment key={user.id}>
         {app.user?.assignedPlans?.map(plan=> plan.service).join(', ')}</Fragment>))}</p>}*/}
-             <p>
-             <h5>User licenses:</h5><p>{allUsersLicenses[user.id || '']?.assignedPlans?.map(p => <>Service: {p.service} {p.servicePlanId}</> )}</p></p>
+         
+              
+            <Card.Header className="cards">   <h4>User licenses:</h4></Card.Header> <Card.Body className="cards"> <p> {allUsersLicenses[user.id || '']?.subscribedSkus?.map(p => <>Service: {p.skuId} {p.skuPartNumber}</> )}</p>
               <p>{allUsersLicenses[user.id || '']?.users?.map(u => <>DisplayName: {u.displayName}</>)}</p>
-                      <p>
-                        {" "}
-                        <Card.Title>
-                          <h4 className="coms">Commercial Subscriptions:</h4>
-                        </Card.Title>{" "}
+                 <p>No Info</p>
+                 </Card.Body>
+                    <Card.Header className="heedsone">
+                          <h4 >Commercial Subscriptions:</h4>
+                        </Card.Header>{" "} 
                         {app.lisens?.map((lisens) => (
                           <Fragment key={lisens.id}>
-                            <p>
-                              <h6 className="head">SkuId:</h6>{" "}
-                              <span className="spanns">{lisens.skuId}</span>{" "}
+                      <Card.Body className="cards">  <p>
+                      <span className='detail'>       SkuId:</span> {" "}
+                              {lisens.skuId}
                               (The unique identifier for the SKU.)
                             </p>
                             <p>
-                              <h6 className="head">SkuPartNumber:</h6>{" "}
-                              <span className="spanns">
+                            <span className='detail'> SkuPartNumber:</span>{" "}
+                             
                                 {lisens.skuPartNumber}
-                              </span>
+                           
                             </p>
                             <p>
-                              <h6 className="head">Id:</h6>
-                              <span className="spanns"> {lisens.id}</span>
-                            </p>
-                            <h6 className="head">ServiceplanInfo:</h6>{" "}
+                            <span className='detail'> Id: </span>
+                                {lisens.id}
+                            </p></Card.Body>
+                        <Card.Header className="heedsone"> <h4 className="">ServiceplanInfo:</h4></Card.Header>{" "}
+                        <Card.Body className="heedsone">
                             {lisens.servicePlans?.map(
                               ({
                                 servicePlanName,
@@ -179,14 +181,17 @@ export default function Licenses(_props: HashRouterProps) {
                                 </p>
                               )
                             )}
+                            </Card.Body>
+                        
+                             
                           </Fragment>
-                        ))}
-                      </p>
-                    </Card.Body>
+                        ))} 
+                  
+                  
                   </div>
                 ))}
               </Card>
-            ))}
+        
           </>
         </AuthenticatedTemplate>
         <UnauthenticatedTemplate>

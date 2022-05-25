@@ -24,13 +24,31 @@
 
 .head {
     color: black;
-    font-weight: 400;
+  
 }
 
 .head {
-    font-weight: 800;
+    font-weight: 600;
+   
+
 }
 
 .margin {
     margin-top: 15px;
+}
+
+.headz {
+    width: 100%;
+  
+    
+
+    
+
+}
+
+.cards {
+    border-left: 3px solid rgb(4, 73, 46);
+    border-right: 3px solid rgb(4, 73, 46);
+    border-top:3px solid rgb(4, 73, 46);
+   
 }
