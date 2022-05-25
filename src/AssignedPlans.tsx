@@ -40,7 +40,7 @@ style={{ width: '100%' }}>
 <div>
      
       <Card.Header className='heedsone'>
-      <h3 className="header">User Details:</h3></Card.Header>
+      <h4 className="header">User Details:</h4></Card.Header>
 
       <Card.Body className='cards'> 
          
