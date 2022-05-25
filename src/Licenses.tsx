@@ -83,7 +83,7 @@ export default function Licenses(_props: HashRouterProps) {
     <div className="p-5 mb-4 bg-light rounded-3 text-dark">
       <Container fluid>
         <h1 className="header">Microsoft 365 Licenses </h1>
-        <p className="lead">Users license information</p>
+        <p className="lead">Users' license and service information</p>
 
         <AuthenticatedTemplate>
           <>
