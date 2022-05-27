@@ -32,7 +32,7 @@ const UserComponent = (props: { user: ISearch }) => {
     text="dark"
     style={{ width: '100%' }}> 
 
-      <Card.Header className="heedsone"><h3 className="head">Search results:</h3></Card.Header>
+      <Card.Header className="heedsone"><h4 className="head">Search results:</h4></Card.Header>
       
     <Card.Body className="cards">
         <p><h3>Name: </h3><span className="details">{user.displayName}</span></p>
@@ -68,15 +68,16 @@ const UserComponent = (props: { user: ISearch }) => {
 
 
  
- <p><Card.Header className="heedsone"> <h3 className="head">Commercial subscriptions:</h3></Card.Header> {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
+ <p><Card.Header className="heedsone"> <h4 className="head">Commercial subscriptions:</h4></Card.Header> {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
 <Card.Body className="cards">
     <p><span className='detail'>SkuId:</span> {lisens.skuId} (The unique identifier for the SKU.)</p>
      <p><span className='detail'>SkuPartNumber:</span> {lisens.skuPartNumber}</p>
      <p><span className='detail'>Id:</span> {lisens.id}</p></Card.Body>
        
-     <Card.Header className="heedsone"> <h3 className="head">ServiceplanInfo:</h3></Card.Header>
+     <Card.Header className="heedsone"> <h4 className="head">ServiceplanInfo:</h4></Card.Header>
   <Card.Body className="cards">  <p>
-     {lisens.servicePlans?.map(({ servicePlanName, servicePlanId, appliesTo }) => (<p key={servicePlanId}><span id="test">ServicePlanName: </span>{servicePlanName}, <span id="test">ServicePlanId:</span> {servicePlanId}, AppliesTo: {appliesTo} </p>))}
+     {lisens.servicePlans?.map(({ servicePlanName, servicePlanId, appliesTo }) => (<p key={servicePlanId}>
+       <span id="test">ServicePlanName: </span>{servicePlanName} <span id="test">ServicePlanId:</span> {servicePlanId} AppliesTo: {appliesTo} </p>))}
      </p></Card.Body> 
 
    </Fragment>))}</p> 

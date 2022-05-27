@@ -122,8 +122,10 @@ const search = (event: FormEvent<HTMLFormElement>) => {
 
 
 return (
+ 
     <div className='Search'>
-        <h1 className="header"></h1>
+     
+        <h4 className="header">Placeholder</h4>
         <form className="searchForm" onSubmit={event => search(event)}>
             <input id="searchText" type="text" placeholder="Search for user" />
             <button>Search</button>
