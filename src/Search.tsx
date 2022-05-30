@@ -18,6 +18,7 @@ import { AssignedPlan, LicenseDetails, SubscribedSku } from "@microsoft/microsof
 export interface ISearch {
     [x: string]: any;
     displayName: string;
+  
     service: any;
     skuId: any;
     assignedPlan: AssignedPlan[];
@@ -83,7 +84,7 @@ export default function SearchUser(_props: BrowserRouterProps) {
       }
       catch (err) {
         console.error(err)
-        alert('resultat error')
+       
       };
         return [];
     };
@@ -105,7 +106,7 @@ export default function SearchUser(_props: BrowserRouterProps) {
         console.error(err)
         alert('error')
       };
-},[userSearch]);
+}, [userSearch]);
 
 const search = (event: FormEvent<HTMLFormElement>) => {
   try{
@@ -124,12 +125,12 @@ const search = (event: FormEvent<HTMLFormElement>) => {
 return (
  
     <div className='Search'>
-     
-        <h4 className="header">Placeholder</h4>
+     <div className="sok">
+        <h4 className="header"></h4>
         <form className="searchForm" onSubmit={event => search(event)}>
-            <input id="searchText" type="text" placeholder="Search for user" />
+            <input type="text" id="searchText"  name="q"  placeholder="Search for user" />
             <button>Search</button>
-            </form>
+            </form></div>
             {userSearch && <p className="resultat">Results for {userSearch}:</p>}
            
 

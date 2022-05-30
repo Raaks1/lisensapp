@@ -21,8 +21,10 @@ export default function AssignedPlans(_props: HashRouterProps) {
   const app = useAppContext();
   
   return (
-    <div className="p-5 mb-4 bg-light rounded-3 text-dark">
+    <div className="p-5 mb-4 mt-4 bg-light rounded-3 text-dark">
       <Container fluid>
+      <h1 className="header">User overview</h1>
+        <p className="lead">Logged in user's personal license and service information</p>
     <AuthenticatedTemplate>
 
 
@@ -38,7 +40,7 @@ bg="light"
 text="dark"
 style={{ width: '100%' }}> 
       
-<div>
+
 <div className="hider"> 
       <Card.Header className='heedsone'>
       <h4 className="header">User Details:</h4></Card.Header></div>
@@ -59,7 +61,7 @@ style={{ width: '100%' }}>
  
  </Fragment>))}</p>}*/}
        
- <p> <div className="hider"><Card.Header className='heedstwo'><h4 className='header'>Commercial Subscriptions:</h4></Card.Header></div>
+ <div className="hider"><Card.Header className='heedstwo'><h4 className='header'>Commercial Subscriptions:</h4></Card.Header></div>
   {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
      <Card.Body className='cards'>
   <p><span className='detail'>SkuId:</span> {lisens.skuId} (The unique identifier for the SKU.)</p>
@@ -73,13 +75,13 @@ style={{ width: '100%' }}>
  
  
   
-</Fragment>))}</p> 
+</Fragment>))}
        
        
        
         
               
-      </div>
+     
      
       </Card>
   

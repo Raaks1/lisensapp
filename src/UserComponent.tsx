@@ -26,8 +26,8 @@ const UserComponent = (props: { user: ISearch }) => {
 <AuthenticatedTemplate>
     <>
 
-    <Card className=""
-    border="none" 
+    <Card className="cards"
+    border="" 
 
     bg="light"
     

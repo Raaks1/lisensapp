@@ -1,18 +1,27 @@
 .Search {
-    
+  
+    margin: auto;
     padding: 50px 100px;
     color:rgb(5, 5, 5);
   
   }
+
+
+  .sok {
+   
+    display: flex;
+    justify-content: flex-start;
+    
+  }
   
   .searchForm input {
+  
+    
    
-   
-    margin-left: 3px;
     border: 3px solid rgb(4, 73, 46);
     padding: 10px;
     font-size: 18px;
-    border-radius: 3px 0px 0px 3px;
+    border-radius: 1px 0px 0px 1px;
    /* border-radius: 10px;*/
   }
   
@@ -21,6 +30,8 @@
     color: rgb(255, 255, 255);
     padding: 12px;
     font-size: 18px;
+    position: absolute;
+    
    
     
     border: 1px solid rgb(4, 73, 46);
@@ -33,13 +44,15 @@
     padding: 12px;
     font-size: 18px;
     border: 1px solid rgb(4, 4, 4);
-    border-radius: 0px 2px 2px 0px;
+   /* border-radius: 0px 2px 2px 0px;*/
   }
   
   .users-container {
     margin: 10px 0;
     display: flex;
     flex-wrap: wrap;
+  
+
  
   }
   

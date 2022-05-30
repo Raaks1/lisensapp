@@ -18,9 +18,9 @@ interface UserAvatarProps {
 function UserAvatar(props: UserAvatarProps) {
   // If a user avatar is available, return an img tag with the pic
   return <img
-      src={props.user.avatar || "no-profile-photo.jpg"} alt="user"
+      src={props.user.avatar || "profil.jpg"} alt="user"
       className="rounded-circle align-self-center mr-2"
-      style={{ width: '32px' }}></img>;
+      style={{ width: '40px' }}></img>;
 }
 
 export default function NavBar() {
@@ -56,7 +56,7 @@ export default function NavBar() {
             <Nav className="ms-auto align-items-center " navbar>
             <AuthenticatedTemplate>
              <NavItem className="logo">
-      <img src="https://placeholder.pics/svg/150x50/888888/EEE/Logo" alt="..." height="36"></img></NavItem>
+      <img src="micro.png" alt="..." height="36"></img></NavItem>
       </AuthenticatedTemplate>
             
             </Nav>

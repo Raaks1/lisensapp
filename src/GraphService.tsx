@@ -31,6 +31,27 @@ function ensureClient(authProvider: AuthCodeMSALBrowserAuthenticationProvider) {
   return graphClient;
 }
 
+
+export async function getUsers(
+  authProvider: AuthCodeMSALBrowserAuthenticationProvider
+): Promise<User[]> {
+  ensureClient(authProvider);
+
+  // Return the /me API endpoint result as a User object
+  const users: { value: User[] } = await graphClient!
+    .api("https://graph.microsoft.com/beta/users?")
+
+    .select("id,displayName,assignedLicenses,assignedPlans,userPrincipalName")
+    // Only retrieve the specific fields needed
+
+    .get();
+  console.log(users);
+  return users?.value;
+}
+
+
+
+
 export async function getUser(
   authProvider: AuthCodeMSALBrowserAuthenticationProvider
 ): Promise<User> {
@@ -117,22 +138,7 @@ export async function getPlans(
     return serviceplan;
   }*/
 
-export async function getUsers(
-  authProvider: AuthCodeMSALBrowserAuthenticationProvider
-): Promise<User[]> {
-  ensureClient(authProvider);
 
-  // Return the /me API endpoint result as a User object
-  const users: { value: User[] } = await graphClient!
-    .api("https://graph.microsoft.com/beta/users?")
-
-    .select("id,displayName,assignedLicenses,assignedPlans,userPrincipalName")
-    // Only retrieve the specific fields needed
-
-    .get();
-  console.log(users);
-  return users?.value;
-}
 
 export async function getOrg(
   authProvider: AuthCodeMSALBrowserAuthenticationProvider

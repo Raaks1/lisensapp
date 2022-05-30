@@ -80,7 +80,7 @@ export default function Licenses(_props: HashRouterProps) {
   }, [getAllUserIndividualLicences, hasLoadedPlans, users]);
 
   return (
-    <div className="p-5 mb-4 bg-light rounded-3 text-dark">
+    <div className="p-5 mb-4 mt-4 bg-light rounded-3 text-dark ">
       <Container fluid>
         <h1 className="header">Microsoft 365 Licenses </h1>
         <p className="lead">Users' license and service information</p>
@@ -197,7 +197,7 @@ export default function Licenses(_props: HashRouterProps) {
           </>
         </AuthenticatedTemplate>
         <UnauthenticatedTemplate>
-          <Button variant="success" onClick={app.signIn!}>
+          <Button style={{ display:"flex", justifyContent:"center", margin: "auto", padding: "15px"}} variant="success" onClick={app.signIn!}>
             Click here to sign in
           </Button>
         </UnauthenticatedTemplate>
