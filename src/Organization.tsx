@@ -20,7 +20,7 @@ export default function Orgplans(_props: HashRouterProps) {
 
     <AuthenticatedTemplate>
       <>
-        <Card className=""  bg="" text="dark" style={{ width: "100%" }}>
+        <Card className=""  bg="light" text="dark" style={{ width: "100%", border: "none" }}>
       <div className="hider">    <Card.Header className="heedsone">
             <h4 className="header">Organization Details:</h4>
           </Card.Header></div>
@@ -30,15 +30,15 @@ export default function Orgplans(_props: HashRouterProps) {
             {app.org?.map((org) => (
               <Fragment key={org?.id}>
                 <Card.Body  className="cards">
-                  <p>
-                    <h3>Name:</h3> {org.displayName}{" "}
-                  </p>
-                  <p>
-                    <h4>TenantType:</h4> {org.tenantType}
-                  </p>
-                  <p>
-                    <h5>Id:</h5> {org.id}
-                  </p>
+                  <div className="p1">
+                    <div className="h3">Name:</div> {org.displayName}
+                  </div>
+                  <div className="p1">
+                    <div className="h3">TenantType:</div> {org.tenantType}
+                  </div>
+                  <div className="p1">
+                    <div className="h3">Id:</div> {org.id}
+                  </div>
                 </Card.Body>
 <div className="hider">
                 <Card.Header className="heedstwo">
@@ -54,8 +54,8 @@ export default function Orgplans(_props: HashRouterProps) {
                         servicePlanId,
                         capabilityStatus,
                         assignedDateTime,
-                      }) => (
-                        <p key={app.user?.id}>
+                      },i) => (
+                        <p key={app.user?.id + '_' + i}>
                           <span id="service"> Service:</span> {service}{" "}
                           <span id="service">ServicePlanId:</span>{" "}
                           {servicePlanId}

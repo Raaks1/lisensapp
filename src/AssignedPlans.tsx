@@ -33,12 +33,12 @@ export default function AssignedPlans(_props: HashRouterProps) {
 
 
 <Card
-border="none" 
+
 
 bg="light"
 
 text="dark"
-style={{ width: '100%' }}> 
+style={{ width: '100%', border:"none" }}> 
       
 
 <div className="hider"> 

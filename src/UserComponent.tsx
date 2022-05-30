@@ -27,7 +27,7 @@ const UserComponent = (props: { user: ISearch }) => {
     <>
 
     <Card className="cards"
-    border="" 
+    style={{ width: "100%", border: "none" }}
 
     bg="light"
     

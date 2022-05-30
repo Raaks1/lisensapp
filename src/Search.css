@@ -126,6 +126,7 @@
   .resultat {
     padding: 10px 15px;
     color: black;
+    text-align: center;
   }
 
   @media screen and (min-width: 768px) {

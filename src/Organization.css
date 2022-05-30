@@ -11,9 +11,11 @@
 
 .header {
     text-align: center;
-    padding: 5px 5px;
+    padding: 5px;
     font-weight: 600;
-    margin-top: 0px;
+    
+   
+    
    
 }
 
@@ -58,7 +60,12 @@
 .hider {
     background-color: 	RGB(25, 135, 84);
     color: white;
-    text-align: center;
+   
+    
+    
+  
+  
+    
     
 }
 
@@ -69,4 +76,14 @@
 .card {
     margin-bottom:  50px;
     margin-top: 50px;
+}
+
+
+.h3 {
+    font-size: 28px;
+   
+}
+
+.p1 {
+    margin-bottom: 10px;
 }

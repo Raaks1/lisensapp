@@ -98,17 +98,17 @@ export default function Licenses(_props: HashRouterProps) {
               "Dark",
             ].map((variant) => (*/}
               <Card
-                border=""
+               
                 bg="light"
               
                 text="dark"
-                style={{ width: "100%" }}
+                style={{ width: "100%", border: "none" }}
               >
                 {users?.map((user) => (
                   <div key={user.id}>
                     <div className="hider">
                     <Card.Header className="heedsone">
-                      <h4 className="desc">User Details:</h4>
+                      <h4 className="header">User Details:</h4>
                     </Card.Header></div>
                     <Card.Body className="cards">
                       <p>

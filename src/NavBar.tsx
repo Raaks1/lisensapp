@@ -20,7 +20,7 @@ function UserAvatar(props: UserAvatarProps) {
   return <img
       src={props.user.avatar || "profil.jpg"} alt="user"
       className="rounded-circle align-self-center mr-2"
-      style={{ width: '40px' }}></img>;
+      style={{ width: '42px' }}></img>;
 }
 
 export default function NavBar() {
@@ -50,16 +50,21 @@ export default function NavBar() {
                
               </NavItem>
               </AuthenticatedTemplate>
-        
+              <AuthenticatedTemplate>
+              <NavItem>
+              <img src="micro.png" alt="..." height="38"></img>
+              </NavItem>
+              </AuthenticatedTemplate>
             </Nav>
-
+            {/*
             <Nav className="ms-auto align-items-center " navbar>
             <AuthenticatedTemplate>
-             <NavItem className="logo">
-      <img src="micro.png" alt="..." height="36"></img></NavItem>
+           <NavItem className="logo">
+              
+      <img src="micro.png" alt="..." height="38"></img></NavItem>
       </AuthenticatedTemplate>
             
-            </Nav>
+            </Nav>*/} 
             <Nav className="ms-auto align-items-center" navbar>
        
               <AuthenticatedTemplate>
