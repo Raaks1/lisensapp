@@ -21,8 +21,8 @@ const UserComponent = (props: { user: ISearch }) => {
  
 
   return (
+    <Container fluid>
     <div className="p-5 mb-4 bg-light rounded-3 text-dark">
-      <Container fluid>
 <AuthenticatedTemplate>
     <>
 
@@ -31,8 +31,7 @@ const UserComponent = (props: { user: ISearch }) => {
 
     bg="light"
     
-    text="dark"
-    style={{ width: '100%' }}> 
+    text="dark"> 
 <div className="hider">
       <Card.Header className="heedsone"><h4 className="header">Search results:</h4></Card.Header></div>
       
@@ -100,8 +99,8 @@ const UserComponent = (props: { user: ISearch }) => {
     </Card>
     </>
     </AuthenticatedTemplate>
-    </Container>
     </div>
+    </Container>
   );
 }; 
 

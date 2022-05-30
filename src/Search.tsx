@@ -56,8 +56,9 @@ export default function SearchUser(_props: BrowserRouterProps) {
 
     const { authProvider } = useAppContext();
 
-    const searchForUsers = async (query: string): Promise<ISearch[]> => {
+    const searchForUsers = async (encodedQuery: string): Promise<ISearch[]> => {
       try {
+        const query = decodeURIComponent(encodedQuery);
         if (authProvider !== undefined) {
             const graphClient = ensureClient(authProvider);
             const result = await graphClient.api(`https://graph.microsoft.com/v1.0/users/`).get();
@@ -126,7 +127,6 @@ return (
  
     <div className='Search'>
      <div className="sok">
-        <h4 className="header"></h4>
         <form className="searchForm" onSubmit={event => search(event)}>
             <input type="text" id="searchText"  name="q"  placeholder="Search for user" />
             <button>Search</button>
