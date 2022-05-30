@@ -18,7 +18,12 @@
 }
 
 .heedsone{
-    border: 3px solid rgb(4, 73, 46);
+    border-left: 3px solid rgb(4, 73, 46);
+    border-right: 3px solid rgb(4, 73, 46);
+    border-top:3px solid rgb(4, 73, 46);
+  
+   
+   
  
   
  
@@ -27,12 +32,39 @@
 .cards {
     border-left: 3px solid rgb(4, 73, 46);
     border-right: 3px solid rgb(4, 73, 46);
-    border-top:3px solid rgb(4, 73, 46);
+ 
+    border-bottom:3px solid rgb(4, 73, 46);
    
 }
 
 .heedstwo{
-    border: 3px solid rgb(4, 73, 46);
-    background-color: blueviolet;
+    border-right: 3px solid rgb(4, 73, 46);
+    border-left:3px solid rgb(4, 73, 46);
  
+  
+   
+ 
+}
+
+.heedsthree{
+    border-right: 3px solid rgb(4, 73, 46);
+    border-left:3px solid rgb(4, 73, 46);
+  
+   
+ 
+}
+
+.hider {
+    background-color: 	RGB(25, 135, 84);
+    color: white;
+    
+}
+
+.yes {
+    border: 5px solid red;
+}
+
+.card {
+    margin-bottom:  50px;
+    margin-top: 50px;
 }

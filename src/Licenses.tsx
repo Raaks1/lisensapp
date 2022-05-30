@@ -106,9 +106,10 @@ export default function Licenses(_props: HashRouterProps) {
               >
                 {users?.map((user) => (
                   <div key={user.id}>
+                    <div className="hider">
                     <Card.Header className="heedsone">
                       <h4 className="desc">User Details:</h4>
-                    </Card.Header>
+                    </Card.Header></div>
                     <Card.Body className="cards">
                       <p>
                         <h4>Name:</h4> {user?.displayName}
@@ -132,13 +133,13 @@ export default function Licenses(_props: HashRouterProps) {
         {app.user?.assignedPlans?.map(plan=> plan.service).join(', ')}</Fragment>))}</p>}*/}
          
               
-            <Card.Header className="cards">   <h4 className="header">User licenses:</h4></Card.Header> <Card.Body className="cards"> <p> {allUsersLicenses[user.id || '']?.subscribedSkus?.map(p => <>Service: {p.skuId} {p.skuPartNumber}</> )}</p>
+     <div className="hider">       <Card.Header className="heedstwo">   <h4 className="header">User Licenses:</h4></Card.Header> </div><Card.Body className="cards"> <p> {allUsersLicenses[user.id || '']?.subscribedSkus?.map(p => <>Service: {p.skuId} {p.skuPartNumber}</> )}</p>
               <p>{allUsersLicenses[user.id || '']?.users?.map(u => <>DisplayName: {u.displayName}</>)}</p>
                  <p>No Info</p>
                  </Card.Body>
-                    <Card.Header className="heedsone">
+              <div className="hider">     <Card.Header className="heedstwo">
                           <h4 className="header">Commercial Subscriptions:</h4>
-                        </Card.Header>{" "} 
+                        </Card.Header>{" "} </div> 
                         {app.lisens?.map((lisens) => (
                           <Fragment key={lisens.id}>
                       <Card.Body className="cards">  <p>
@@ -156,7 +157,8 @@ export default function Licenses(_props: HashRouterProps) {
                             <span className='detail'> Id: </span>
                                 {lisens.id}
                             </p></Card.Body>
-                        <Card.Header className="heedsone"> <h4 className="header">ServiceplanInfo:</h4></Card.Header>{" "}
+                            <div className="hider">
+                        <Card.Header className="heedstwo"> <h4 className="header">ServiceplanInfo:</h4></Card.Header>{" "}</div>
                         <Card.Body className="heedsone">
                             {lisens.servicePlans?.map(
                               ({

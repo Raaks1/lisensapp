@@ -13,14 +13,16 @@ export default function Orgplans(_props: HashRouterProps) {
   const app = useAppContext();
 
   return (
+    <div className="p-5 mb-4 bg-light rounded-3 text-dark">
+    <Container fluid>
     <AuthenticatedTemplate>
       <>
-        <Card className="cards" border="" bg="" text="dark" style={{ width: "100%" }}>
-          <Card.Header className="heedsone">
+        <Card className="" border="none" bg="" text="dark" style={{ width: "100%" }}>
+      <div className="hider">    <Card.Header className="heedsone">
             <h4 className="header">Organization Details:</h4>
-          </Card.Header>
+          </Card.Header></div>
 
-          <p>
+         
             {" "}
             {app.org?.map((org) => (
               <Fragment key={org?.id}>
@@ -35,10 +37,10 @@ export default function Orgplans(_props: HashRouterProps) {
                     <h5>Id:</h5> {org.id}
                   </p>
                 </Card.Body>
-
-                <Card.Header className="heedsone">
+<div className="hider">
+                <Card.Header className="heedstwo">
                   <h4 className="header">Assigned plans:</h4>
-                </Card.Header>
+                </Card.Header></div>
                 <Card.Body className="cards">
                   {" "}
                   <p>
@@ -60,12 +62,15 @@ export default function Orgplans(_props: HashRouterProps) {
                       )
                     )}
                   </p>
-                </Card.Body>
+                  </Card.Body>
               </Fragment>
+              
             ))}
-          </p>
+          
         </Card>
       </>
     </AuthenticatedTemplate>
+    </Container>
+    </div>
   );
 }

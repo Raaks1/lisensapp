@@ -21,7 +21,8 @@ export default function AssignedPlans(_props: HashRouterProps) {
   const app = useAppContext();
   
   return (
-   
+    <div className="p-5 mb-4 bg-light rounded-3 text-dark">
+      <Container fluid>
     <AuthenticatedTemplate>
 
 
@@ -30,7 +31,7 @@ export default function AssignedPlans(_props: HashRouterProps) {
 
 
 <Card
-border="success" 
+border="none" 
 
 bg="light"
 
@@ -38,9 +39,9 @@ text="dark"
 style={{ width: '100%' }}> 
       
 <div>
-     
+<div className="hider"> 
       <Card.Header className='heedsone'>
-      <h4 className="header">User Details:</h4></Card.Header>
+      <h4 className="header">User Details:</h4></Card.Header></div>
 
       <Card.Body className='cards'> 
          
@@ -58,13 +59,14 @@ style={{ width: '100%' }}>
  
  </Fragment>))}</p>}*/}
        
- <p><Card.Header className='heedsone'><h4 className='header'>Commercial Subscriptions:</h4></Card.Header> {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
+ <p> <div className="hider"><Card.Header className='heedstwo'><h4 className='header'>Commercial Subscriptions:</h4></Card.Header></div>
+  {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
      <Card.Body className='cards'>
   <p><span className='detail'>SkuId:</span> {lisens.skuId} (The unique identifier for the SKU.)</p>
   <p><span className='detail'>SkuPartNumber:</span> {lisens.skuPartNumber}</p>
   <p><span className='detail'>Id:</span> {lisens.id}</p>   </Card.Body>
-  
- <Card.Header className="heedsone"> <h4 className='header'>ServiceplanInfo:</h4> </Card.Header>
+  <div className="hider">
+ <Card.Header className="heedstwo"> <h4 className='header'>ServiceplanInfo:</h4> </Card.Header></div>
  <Card.Body className="cards"><p>
   {lisens.servicePlans?.map(({servicePlanName, servicePlanId, appliesTo}) =>(<p key={servicePlanId}>
     <span className='plann'>  ServicePlanName:</span> {servicePlanName},<span className='plann'> ServicePlanId:</span> {servicePlanId} {/* AppliesTo: {appliesTo}*/} </p>))}</p></Card.Body>
@@ -84,7 +86,8 @@ style={{ width: '100%' }}>
         </>
       
     </AuthenticatedTemplate>
-   
+    </Container>
+    </div>
   )
 
 }

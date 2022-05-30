@@ -21,18 +21,20 @@ const UserComponent = (props: { user: ISearch }) => {
  
 
   return (
+    <div className="p-5 mb-4 bg-light rounded-3 text-dark">
+      <Container fluid>
 <AuthenticatedTemplate>
     <>
 
-    <Card className="cards"
-    border="light" 
+    <Card className=""
+    border="none" 
 
     bg="light"
     
     text="dark"
     style={{ width: '100%' }}> 
-
-      <Card.Header className="heedsone"><h4 className="head">Search results:</h4></Card.Header>
+<div className="hider">
+      <Card.Header className="heedsone"><h4 className="header">Search results:</h4></Card.Header></div>
       
     <Card.Body className="cards">
         <p><h3>Name: </h3><span className="details">{user.displayName}</span></p>
@@ -68,13 +70,13 @@ const UserComponent = (props: { user: ISearch }) => {
 
 
  
- <p><Card.Header className="heedsone"> <h4 className="head">Commercial subscriptions:</h4></Card.Header> {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
+ <p><div className="hider"><Card.Header className="heedstwo"> <h4 className="header">Commercial subscriptions:</h4></Card.Header></div> {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
 <Card.Body className="cards">
     <p><span className='detail'>SkuId:</span> {lisens.skuId} (The unique identifier for the SKU.)</p>
      <p><span className='detail'>SkuPartNumber:</span> {lisens.skuPartNumber}</p>
      <p><span className='detail'>Id:</span> {lisens.id}</p></Card.Body>
        
-     <Card.Header className="heedsone"> <h4 className="head">ServiceplanInfo:</h4></Card.Header>
+     <div className="hider">     <Card.Header className="heedstwo"> <h4 className="header">ServiceplanInfo:</h4></Card.Header></div>
   <Card.Body className="cards">  <p>
      {lisens.servicePlans?.map(({ servicePlanName, servicePlanId, appliesTo }) => (<p key={servicePlanId}>
        <span id="test">ServicePlanName: </span>{servicePlanName} <span id="test">ServicePlanId:</span> {servicePlanId} AppliesTo: {appliesTo} </p>))}
@@ -98,6 +100,8 @@ const UserComponent = (props: { user: ISearch }) => {
     </Card>
     </>
     </AuthenticatedTemplate>
+    </Container>
+    </div>
   );
 }; 
 
