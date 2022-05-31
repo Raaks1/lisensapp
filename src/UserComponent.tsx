@@ -36,8 +36,10 @@ const UserComponent = (props: { user: ISearch }) => {
       <Card.Header className="heedsone"><h4 className="header">Search results:</h4></Card.Header></div>
       
     <Card.Body className="cards">
-        <p><h3>Name: </h3><span className="details">{user.displayName}</span></p>
-        <p><h4>User Id:</h4><span className="details"> {user.id}</span></p>  
+    <div className="p1">
+    <div className="h3">Name: </div>{user.displayName}</div>
+    <div className="p1">
+    <div className="h3"> User Id:</div> {user.id} </div>
     
    
         </Card.Body>
@@ -69,19 +71,19 @@ const UserComponent = (props: { user: ISearch }) => {
 
 
  
- <p><div className="hider"><Card.Header className="heedstwo"> <h4 className="header">Commercial subscriptions:</h4></Card.Header></div> {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
+ <div><div className="hider"><Card.Header className="heedstwo"> <h4 className="header">Commercial subscriptions:</h4></Card.Header></div> {app.lisens?.map(lisens => (<Fragment key={lisens.id}>
 <Card.Body className="cards">
     <p><span className='detail'>SkuId:</span> {lisens.skuId} (The unique identifier for the SKU.)</p>
      <p><span className='detail'>SkuPartNumber:</span> {lisens.skuPartNumber}</p>
      <p><span className='detail'>Id:</span> {lisens.id}</p></Card.Body>
        
      <div className="hider">     <Card.Header className="heedstwo"> <h4 className="header">ServiceplanInfo:</h4></Card.Header></div>
-  <Card.Body className="cards">  <p>
+  <Card.Body className="cards">  <div>
      {lisens.servicePlans?.map(({ servicePlanName, servicePlanId, appliesTo }) => (<p key={servicePlanId}>
-       <span id="test">ServicePlanName: </span>{servicePlanName} <span id="test">ServicePlanId:</span> {servicePlanId} AppliesTo: {appliesTo} </p>))}
-     </p></Card.Body> 
+       <span id="test">ServicePlanName: </span>{servicePlanName} <span id="test">ServicePlanId:</span> {servicePlanId} <span id="test">AppliesTo: </span> {appliesTo}</p>))}
+     </div></Card.Body> 
 
-   </Fragment>))}</p> 
+   </Fragment>))}</div> 
    {/*  <p><h6>Assigned Plans:  </h6>
       
       {user.assignedPlan && <pre>{JSON.stringify(user.assignedPlan, undefined, 2)}</pre>}</p>  

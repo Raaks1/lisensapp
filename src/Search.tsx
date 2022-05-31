@@ -46,11 +46,17 @@ function ensureClient(authProvider: AuthCodeMSALBrowserAuthenticationProvider) {
 }
 
 
+const filterFromSearch = (search: string) => 
+  (item: ISearch) => {
+    const nameItems = item.displayName.toLowerCase().split(' ');
+    const queryItems = search.toLowerCase().split(' ');
+    return nameItems.some(name => queryItems.some(query => name.includes(query)))
+}
 
-
+type SearchState = 'searching' | 'notSearching';
 
 export default function SearchUser(_props: BrowserRouterProps) {
-   
+    const [searchState, setSearchState] = useState<SearchState>('notSearching')
     const [userFound, setUserFound] = useState<ISearch[]>([]);
     const [userSearch, setUserSearch] = useState('');
 
@@ -63,7 +69,7 @@ export default function SearchUser(_props: BrowserRouterProps) {
             const graphClient = ensureClient(authProvider);
             const result = await graphClient.api(`https://graph.microsoft.com/v1.0/users/`).get();
             const allResults = result.value;
-            const filteredResults = allResults.filter((item: ISearch) => item.displayName.toLowerCase().includes(query.toLowerCase()));
+            const filteredResults = allResults.filter(filterFromSearch(query));
             const resultsWithLicenses = await Promise.all(filteredResults.map(async (item: ISearch): Promise<ISearch> => {
                     const license: {value: SubscribedSku} = await graphClient!.api(`https://graph.microsoft.com/v1.0/subscribedSkus`)
                     /*.header('Authorization', `Bearer ${token}`)*/
@@ -96,8 +102,10 @@ export default function SearchUser(_props: BrowserRouterProps) {
         (async () => {
             const query = encodeURIComponent(userSearch);
             if (query) {
-            const response = await searchForUsers(query);
-            setUserFound(response);
+              setSearchState('searching')
+              const response = await searchForUsers(query);
+              setSearchState("notSearching")
+              setUserFound(response);
             }
            
         
@@ -128,11 +136,16 @@ return (
     <div className='Search'>
      <div className="sok">
         <form className="searchForm" onSubmit={event => search(event)}>
-            <input type="text" id="searchText"  name="q"  placeholder="Search for user" />
+            <input type="text" id="searchText"  name="q" /*value={userSearch}*/ placeholder="Search for user" />
             <button>Search</button>
             </form></div>
             {userSearch && <p className="resultat">Results for {userSearch}:</p>}
+       
+            
+            
            
+            
+    
 
             <>
  {/* {[
@@ -153,11 +166,16 @@ bg="none"
 text="dark"
   style={{ width: '100%' }}> */}
       <div className="users-container">
-        {userFound?.length > 0 &&
+
+        {searchState === 'searching' && <div className="spinner">Loading...</div>}
+
+{userSearch.length > 0 && searchState === "notSearching" && userFound.length === 0? (<div className="resultater">Sorry, no results found</div>) 
+    :
           userFound.map(user =>
             (<UserComponent key={user.id} user={user}></UserComponent>))
          
         }
+    
         
         
         </div>

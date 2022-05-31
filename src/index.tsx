@@ -37,6 +37,7 @@ msalInstance.addEventCallback((event: EventMessage) => {
     // Set the active account - this simplifies token acquisition
     const authResult = event.payload as AuthenticationResult;
     msalInstance.setActiveAccount(authResult.account);
+    window.location.reload()
   }
 });
 

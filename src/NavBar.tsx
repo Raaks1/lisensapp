@@ -51,7 +51,7 @@ export default function NavBar() {
               </NavItem>
               </AuthenticatedTemplate>
               <AuthenticatedTemplate>
-              <NavItem>
+              <NavItem className="me-auto">
               <img src="micro.png" alt="..." height="38"></img>
               </NavItem>
               </AuthenticatedTemplate>

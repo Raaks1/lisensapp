@@ -111,21 +111,21 @@ export default function Licenses(_props: HashRouterProps) {
                       <h4 className="header">User Details:</h4>
                     </Card.Header></div>
                     <Card.Body className="cards">
-                      <p>
-                        <h4>Name:</h4> {user?.displayName}
-                      </p>
-                      <p>
-                        
-                          <h5>UserPrincipalName: </h5>
+                    <div className="p1">
+                        <div className="h3">Name:</div> {user?.displayName}
+                      </div>
+                      
+                      <div className="p1">
+                          <div className="h3">UserPrincipalName: </div>
                        
                         {user?.userPrincipalName}
-                      </p>
-                      <p key={user.id}>
+                      </div>
+                      <div key={user.id} className="p1">
                         
-                          <h5>User id: </h5>
+                      <div className="h3">User id: </div>
                        
                         {user?.id}{" "}
-                      </p></Card.Body>
+                      </div></Card.Body>
 
                       {/* <p>  {app.user?.assignedPlans?.map(plan=> plan.service).join(', ')}</p>  
          
@@ -178,8 +178,8 @@ export default function Licenses(_props: HashRouterProps) {
                                     ServicePlanId:{" "}
                                   </span>
                                   <span className="spans">{servicePlanId}</span>{" "}
-                                  -<span className="spanners"> AppliesTo:</span>{" "}
-                                  <span className="spans">{appliesTo}</span>{" "}
+                                {/*-<span className="spanners"> AppliesTo:</span>{" "}
+                                  <span className="spans">{appliesTo}</span>{" "}*/}  
                                 </p>
                               )
                             )}

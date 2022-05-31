@@ -1,3 +1,5 @@
+
+
 .Search {
   
     margin: auto;
@@ -129,8 +131,25 @@
     text-align: center;
   }
 
+  .resultater {
+    text-align: center;
+    display: hidden;
+    display: block;
+   color: red;
+   
+    align-content: center;
+    margin: auto;
+  }
+
   @media screen and (min-width: 768px) {
     .Search {
       padding: 50px 100px;
     }
+  }
+
+  .spinner {
+    
+    text-align: center;
+    font-size: 26px;
+    margin: auto;
   }

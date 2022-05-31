@@ -46,10 +46,12 @@ style={{ width: '100%', border:"none" }}>
       <h4 className="header">User Details:</h4></Card.Header></div>
 
       <Card.Body className='cards'> 
-         
-      <p> <h3>Name:</h3> {app.user?.displayName}</p>
-      <p ><h4>UserPrincipalName:</h4> {app.user?.userPrincipalName}</p>  
-      <p key={app.user?.id}><h5>User id:</h5> {app.user?.id} </p>
+      <div className="p1"> 
+      <div className="h3">Name:</div> {app.user?.displayName}</div>
+      <div className="p1">
+      <div className="h3">UserPrincipalName: </div> {app.user?.userPrincipalName}</div>
+      <div className="p1">
+      <div key={app.user?.id} className="h3">User id:</div> {app.user?.id} </div>
       
       </Card.Body>
    
@@ -69,9 +71,9 @@ style={{ width: '100%', border:"none" }}>
   <p><span className='detail'>Id:</span> {lisens.id}</p>   </Card.Body>
   <div className="hider">
  <Card.Header className="heedstwo"> <h4 className='header'>ServiceplanInfo:</h4> </Card.Header></div>
- <Card.Body className="cards"><p>
+ <Card.Body className="cards"><>
   {lisens.servicePlans?.map(({servicePlanName, servicePlanId, appliesTo}) =>(<p key={servicePlanId}>
-    <span className='plann'>  ServicePlanName:</span> {servicePlanName},<span className='plann'> ServicePlanId:</span> {servicePlanId} {/* AppliesTo: {appliesTo}*/} </p>))}</p></Card.Body>
+    <span className='plann'>  ServicePlanName:</span> {servicePlanName},<span className='plann'> ServicePlanId:</span> {servicePlanId} {/* AppliesTo: {appliesTo}*/} </p>))}</></Card.Body>
  
  
   
