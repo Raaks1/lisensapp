@@ -17,7 +17,7 @@ export default function Orgplans(_props: HashRouterProps) {
       <Container fluid>
         <h1 className="header">Organizational overview: </h1>
         <p className="lead">
-          License and service information of the organization
+          License and service information for the organization
         </p>
 
         <AuthenticatedTemplate>
