@@ -10,6 +10,7 @@ import {
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
 import './NavBar.css';
 import { AppUser, useAppContext } from './AppContext';
+import { isWhiteSpaceLike } from 'typescript';
 
 interface UserAvatarProps {
   user: AppUser
@@ -19,8 +20,8 @@ function UserAvatar(props: UserAvatarProps) {
   // If a user avatar is available, return an img tag with the pic
   return <img
       src={props.user.avatar || "profil.jpg"} alt="user"
-      className="rounded-circle align-self-center mr-2"
-      style={{ width: '42px' }}></img>;
+      className="rounded-circle align-self-center mr-2 "
+      style={{ width: '42px', border: '2px solid white' }}></img>;
 }
 
 export default function NavBar() {
@@ -28,12 +29,13 @@ export default function NavBar() {
   const user = app.user || { displayName: '', email: '' };
 
   return (
-      <Navbar bg="success" variant="dark" expand="md" fixed="top">
+  
+      <Navbar bg="success" variant="dark" expand="md" fixed="top" >
         <Container>
           <Navbar.Brand href="/">All Users</Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse>
-            <Nav className="me-auto" navbar>
+            <Nav className="me-auto" navbar >
             <AuthenticatedTemplate>
               <NavItem>
                <RouterNavLink to="/Search" className="nav-link">Search</RouterNavLink>
@@ -51,7 +53,7 @@ export default function NavBar() {
               </NavItem>
               </AuthenticatedTemplate>
               <AuthenticatedTemplate>
-              <NavItem className="me-auto">
+              <NavItem className="me-auto" id="logo">
               <img src="micro.png" alt="..." height="38"></img>
               </NavItem>
               </AuthenticatedTemplate>
@@ -85,5 +87,6 @@ export default function NavBar() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+   
   );
 }
