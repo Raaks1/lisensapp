@@ -123,7 +123,7 @@ const search = (event: FormEvent<HTMLFormElement>) => {
     const form = event.target as HTMLFormElement;
     const input = form.querySelector('#searchText') as HTMLInputElement;
     setUserSearch(input.value);
-    input.value = '';
+   /*input.value = '';*/
   } catch (err) {
     console.error(err)
     alert('error')
@@ -136,7 +136,7 @@ return (
     <div className='Search'>
      <div className="sok">
         <form className="searchForm" onSubmit={event => search(event)}>
-            <input type="text" id="searchText"  name="q" /*value={userSearch}*/ placeholder="Search for user" />
+            <input type="text" id="searchText"  name="q" /*onChange={(e) => setUserSearch(e.target.value || '')} */ defaultValue={userSearch} placeholder="Search for user" />
             <button>Search</button>
             </form></div>
             {userSearch && <p className="resultat">Results for {userSearch}:</p>}

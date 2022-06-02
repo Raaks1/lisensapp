@@ -170,14 +170,14 @@ export default function Licenses(_props: HashRouterProps) {
                                   <span className="spanners">
                                     ServicePlanName:
                                   </span>{" "}
-                                  <span className="spans">
+                                  <span className="details">
                                     {servicePlanName}
                                   </span>{" "}
-                                  -{" "}
+                                  {" "}
                                   <span className="spanners">
                                     ServicePlanId:{" "}
                                   </span>
-                                  <span className="spans">{servicePlanId}</span>{" "}
+                                  <span className="details">{servicePlanId}</span>{" "}
                                 {/*-<span className="spanners"> AppliesTo:</span>{" "}
                                   <span className="spans">{appliesTo}</span>{" "}*/}  
                                 </p>
