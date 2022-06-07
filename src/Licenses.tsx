@@ -150,7 +150,7 @@ export default function Licenses(_props: HashRouterProps) {
                         <>DisplayName: {u.displayName}</>
                       ))}
                     </p>
-                    <p>No Info Yet</p>
+                    <p>No Info </p>
                   </Card.Body>
                   <div className="hider">
                     {" "}
