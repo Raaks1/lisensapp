@@ -101,7 +101,7 @@ export default function Licenses(_props: HashRouterProps) {
               {users?.map((user) => (
                 <div key={user.id}>
                   <div className="hider">
-                    <Card.Header className="heedsone">
+                    <Card.Header className="headersone">
                       <h4 className="header">User Details:</h4>
                     </Card.Header>
                   </div>
@@ -128,7 +128,7 @@ export default function Licenses(_props: HashRouterProps) {
 
                   <div className="hider">
                     {" "}
-                    <Card.Header className="heedstwo">
+                    <Card.Header className="headerstwo">
                       {" "}
                       <h4 className="header">User Licenses:</h4>
                     </Card.Header>{" "}
@@ -150,11 +150,11 @@ export default function Licenses(_props: HashRouterProps) {
                         <>DisplayName: {u.displayName}</>
                       ))}
                     </p>
-                    <p>No Info</p>
+                    <p>No Info Yet</p>
                   </Card.Body>
                   <div className="hider">
                     {" "}
-                    <Card.Header className="heedstwo">
+                    <Card.Header className="headerstwo">
                       <h4 className="header">Commercial Subscriptions:</h4>
                     </Card.Header>{" "}
                   </div>
@@ -176,12 +176,12 @@ export default function Licenses(_props: HashRouterProps) {
                         </p>
                       </Card.Body>
                       <div className="hider">
-                        <Card.Header className="heedstwo">
+                        <Card.Header className="headerstwo">
                           {" "}
                           <h4 className="header">ServiceplanInfo:</h4>
                         </Card.Header>{" "}
                       </div>
-                      <Card.Body className="heedsone">
+                      <Card.Body className="headersone">
                         {lisens.servicePlans?.map(
                           ({ servicePlanName, servicePlanId, appliesTo }) => (
                             <p key={servicePlanId}>

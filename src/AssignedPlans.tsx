@@ -28,7 +28,7 @@ export default function AssignedPlans(_props: HashRouterProps) {
               style={{ width: "100%", border: "none" }}
             >
               <div className="hider">
-                <Card.Header className="heedsone">
+                <Card.Header className="headersone">
                   <h4 className="header">User Details:</h4>
                 </Card.Header>
               </div>
@@ -58,7 +58,7 @@ export default function AssignedPlans(_props: HashRouterProps) {
  </Fragment>))}</p>}*/}
 
               <div className="hider">
-                <Card.Header className="heedstwo">
+                <Card.Header className="headerstwo">
                   <h4 className="header">Commercial Subscriptions:</h4>
                 </Card.Header>
               </div>
@@ -78,7 +78,7 @@ export default function AssignedPlans(_props: HashRouterProps) {
                     </p>{" "}
                   </Card.Body>
                   <div className="hider">
-                    <Card.Header className="heedstwo">
+                    <Card.Header className="headerstwo">
                       {" "}
                       <h4 className="header">ServiceplanInfo:</h4>{" "}
                     </Card.Header>

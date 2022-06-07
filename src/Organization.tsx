@@ -30,7 +30,7 @@ export default function Orgplans(_props: HashRouterProps) {
             >
               <div className="hider">
                 {" "}
-                <Card.Header className="heedsone">
+                <Card.Header className="headersone">
                   <h4 className="header">Organization Details:</h4>
                 </Card.Header>
               </div>{" "}
@@ -48,7 +48,7 @@ export default function Orgplans(_props: HashRouterProps) {
                     </div>
                   </Card.Body>
                   <div className="hider">
-                    <Card.Header className="heedstwo">
+                    <Card.Header className="headerstwo">
                       <h4 className="header">Assigned plans:</h4>
                     </Card.Header>
                   </div>
