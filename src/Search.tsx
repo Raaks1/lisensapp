@@ -167,7 +167,7 @@ text="dark"
   style={{ width: '100%' }}> */}
       <div className="users-container">
 
-        {searchState === 'searching' && <div className="spinner">Loading...</div>}
+        {searchState === 'searching' && <div className="spinner">Searching...</div>}
 
 {userSearch.length > 0 && searchState === "notSearching" && userFound.length === 0? (<div className="resultater">Sorry, no results found</div>) 
     :

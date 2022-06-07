@@ -22,7 +22,7 @@ const UserComponent = (props: { user: ISearch }) => {
 
   return (
     <Container fluid>
-    <div className="p-5 mb-4 bg-light rounded-3 text-dark">
+    <div className="shadow p-5 mb-4 bg-light rounded-3 text-dark">
 <AuthenticatedTemplate>
     <>
 

@@ -18,17 +18,15 @@ import {
   SubscribedSku,
   User,
   Organization,
-  AssignedPlan
+  AssignedPlan,
 } from "@microsoft/microsoft-graph-types";
-
-
 
 type UserLicenceInfo = {
   subscribedSkus?: SubscribedSku[];
   skuIds?: string[];
   assignedPlans?: AssignedPlan[];
   service?: AssignedPlan[];
-  displayName?: Organization[]
+  displayName?: Organization[];
   users?: User[];
 };
 
@@ -53,14 +51,12 @@ export default function Licenses(_props: HashRouterProps) {
     // Populate data structure with info about each user
     for (const userId of userIds) {
       const plans = await app.getSingleUserLicence(userId);
-        allUserLicenses[userId] = {
+      allUserLicenses[userId] = {
         skuIds: [],
         assignedPlans: [],
         subscribedSkus: [],
         service: [],
-        displayName: []
-
-        
+        displayName: [],
       };
     }
     // Return data about all users
@@ -80,14 +76,14 @@ export default function Licenses(_props: HashRouterProps) {
   }, [getAllUserIndividualLicences, hasLoadedPlans, users]);
 
   return (
-    <div className="p-5 mb-4 mt-4 bg-light rounded-3 text-dark ">
+    <div className="shadow p-5 mb-4 mt-4 bg-light rounded-3 text-dark ">
       <Container fluid>
         <h1 className="header">Microsoft 365 Licenses </h1>
         <p className="lead">Users' license and service information</p>
 
         <AuthenticatedTemplate>
           <>
-          {/*}  {[
+            {/*}  {[
               "Primary",
               "Secondary",
               "Success",
@@ -97,107 +93,128 @@ export default function Licenses(_props: HashRouterProps) {
               "Light",
               "Dark",
             ].map((variant) => (*/}
-              <Card
-               
-                bg="light"
-              
-                text="dark"
-                style={{ width: "100%", border: "none" }}
-              >
-                {users?.map((user) => (
-                  <div key={user.id}>
-                    <div className="hider">
+            <Card
+              bg="light"
+              text="dark"
+              style={{ width: "100%", border: "none" }}
+            >
+              {users?.map((user) => (
+                <div key={user.id}>
+                  <div className="hider">
                     <Card.Header className="heedsone">
                       <h4 className="header">User Details:</h4>
-                    </Card.Header></div>
-                    <Card.Body className="cards">
+                    </Card.Header>
+                  </div>
+                  <Card.Body className="cards">
                     <div className="p1">
-                        <div className="h3">Name:</div> {user?.displayName}
-                      </div>
-                      
-                      <div className="p1">
-                          <div className="h3">UserPrincipalName: </div>
-                       
-                        {user?.userPrincipalName}
-                      </div>
-                      <div key={user.id} className="p1">
-                        
-                      <div className="h3">User id: </div>
-                       
-                        {user?.id}{" "}
-                      </div></Card.Body>
+                      <div className="h3">Name:</div> {user?.displayName}
+                    </div>
 
-                      {/* <p>  {app.user?.assignedPlans?.map(plan=> plan.service).join(', ')}</p>  
+                    <div className="p1">
+                      <div className="h3">UserPrincipalName: </div>
+
+                      {user?.userPrincipalName}
+                    </div>
+                    <div key={user.id} className="p1">
+                      <div className="h3">User id: </div>
+                      {user?.id}{" "}
+                    </div>
+                  </Card.Body>
+
+                  {/* <p>  {app.user?.assignedPlans?.map(plan=> plan.service).join(', ')}</p>  
          
         { <p> <Card.Title><h6>Service:</h6></Card.Title> {app.user?.map(user => (<Fragment key={user.id}>
         {app.user?.assignedPlans?.map(plan=> plan.service).join(', ')}</Fragment>))}</p>}*/}
-         
-              
-     <div className="hider">       <Card.Header className="heedstwo">   <h4 className="header">User Licenses:</h4></Card.Header> </div><Card.Body className="cards"> <p> {allUsersLicenses[user.id || '']?.subscribedSkus?.map(p => <>Service: {p.skuId} {p.skuPartNumber}</> )}</p>
-              <p>{allUsersLicenses[user.id || '']?.users?.map(u => <>DisplayName: {u.displayName}</>)}</p>
-                 <p>No Info</p>
-                 </Card.Body>
-              <div className="hider">     <Card.Header className="heedstwo">
-                          <h4 className="header">Commercial Subscriptions:</h4>
-                        </Card.Header>{" "} </div> 
-                        {app.lisens?.map((lisens) => (
-                          <Fragment key={lisens.id}>
-                      <Card.Body className="cards">  <p>
-                      <span className='detail'>       SkuId:</span> {" "}
-                              {lisens.skuId}
-                              (The unique identifier for the SKU.)
-                            </p>
-                            <p>
-                            <span className='detail'> SkuPartNumber:</span>{" "}
-                             
-                                {lisens.skuPartNumber}
-                           
-                            </p>
-                            <p>
-                            <span className='detail'> Id: </span>
-                                {lisens.id}
-                            </p></Card.Body>
-                            <div className="hider">
-                        <Card.Header className="heedstwo"> <h4 className="header">ServiceplanInfo:</h4></Card.Header>{" "}</div>
-                        <Card.Body className="heedsone">
-                            {lisens.servicePlans?.map(
-                              ({
-                                servicePlanName,
-                                servicePlanId,
-                                appliesTo,
-                              }) => (
-                                <p key={servicePlanId}>
-                                  <span className="spanners">
-                                    ServicePlanName:
-                                  </span>{" "}
-                                  <span className="details">
-                                    {servicePlanName}
-                                  </span>{" "}
-                                  {" "}
-                                  <span className="spanners">
-                                    ServicePlanId:{" "}
-                                  </span>
-                                  <span className="details">{servicePlanId}</span>{" "}
-                                {/*-<span className="spanners"> AppliesTo:</span>{" "}
-                                  <span className="spans">{appliesTo}</span>{" "}*/}  
-                                </p>
-                              )
-                            )}
-                            </Card.Body>
-                        
-                             
-                          </Fragment>
-                        ))} 
-                  
-                  
+
+                  <div className="hider">
+                    {" "}
+                    <Card.Header className="heedstwo">
+                      {" "}
+                      <h4 className="header">User Licenses:</h4>
+                    </Card.Header>{" "}
                   </div>
-                ))}
-              </Card>
-        
+                  <Card.Body className="cards">
+                    {" "}
+                    <p>
+                      {" "}
+                      {allUsersLicenses[user.id || ""]?.subscribedSkus?.map(
+                        (p) => (
+                          <>
+                            Service: {p.skuId} {p.skuPartNumber}
+                          </>
+                        )
+                      )}
+                    </p>
+                    <p>
+                      {allUsersLicenses[user.id || ""]?.users?.map((u) => (
+                        <>DisplayName: {u.displayName}</>
+                      ))}
+                    </p>
+                    <p>No Info</p>
+                  </Card.Body>
+                  <div className="hider">
+                    {" "}
+                    <Card.Header className="heedstwo">
+                      <h4 className="header">Commercial Subscriptions:</h4>
+                    </Card.Header>{" "}
+                  </div>
+                  {app.lisens?.map((lisens) => (
+                    <Fragment key={lisens.id}>
+                      <Card.Body className="cards">
+                        {" "}
+                        <p>
+                          <span className="detail"> SkuId:</span> {lisens.skuId}
+                          (The unique identifier for the SKU.)
+                        </p>
+                        <p>
+                          <span className="detail"> SkuPartNumber:</span>{" "}
+                          {lisens.skuPartNumber}
+                        </p>
+                        <p>
+                          <span className="detail"> Id: </span>
+                          {lisens.id}
+                        </p>
+                      </Card.Body>
+                      <div className="hider">
+                        <Card.Header className="heedstwo">
+                          {" "}
+                          <h4 className="header">ServiceplanInfo:</h4>
+                        </Card.Header>{" "}
+                      </div>
+                      <Card.Body className="heedsone">
+                        {lisens.servicePlans?.map(
+                          ({ servicePlanName, servicePlanId, appliesTo }) => (
+                            <p key={servicePlanId}>
+                              <span className="spanners">ServicePlanName:</span>{" "}
+                              <span className="details">{servicePlanName}</span>{" "}
+                              <span className="spanners">ServicePlanId: </span>
+                              <span className="details">
+                                {servicePlanId}
+                              </span>{" "}
+                              {/*-<span className="spanners"> AppliesTo:</span>{" "}
+                                  <span className="spans">{appliesTo}</span>{" "}*/}
+                            </p>
+                          )
+                        )}
+                      </Card.Body>
+                    </Fragment>
+                  ))}
+                </div>
+              ))}
+            </Card>
           </>
         </AuthenticatedTemplate>
         <UnauthenticatedTemplate>
-          <Button style={{ display:"flex", justifyContent:"center", margin: "auto", padding: "15px"}} variant="success" onClick={app.signIn!}>
+          <Button
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "auto",
+              padding: "15px",
+            }}
+            variant="success"
+            onClick={app.signIn!}
+          >
             Click here to sign in
           </Button>
         </UnauthenticatedTemplate>

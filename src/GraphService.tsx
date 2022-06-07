@@ -31,7 +31,6 @@ function ensureClient(authProvider: AuthCodeMSALBrowserAuthenticationProvider) {
   return graphClient;
 }
 
-
 export async function getUsers(
   authProvider: AuthCodeMSALBrowserAuthenticationProvider
 ): Promise<User[]> {
@@ -48,9 +47,6 @@ export async function getUsers(
   console.log(users);
   return users?.value;
 }
-
-
-
 
 export async function getUser(
   authProvider: AuthCodeMSALBrowserAuthenticationProvider
@@ -137,8 +133,6 @@ export async function getPlans(
 
     return serviceplan;
   }*/
-
-
 
 export async function getOrg(
   authProvider: AuthCodeMSALBrowserAuthenticationProvider

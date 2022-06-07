@@ -13,9 +13,9 @@ export default function Orgplans(_props: HashRouterProps) {
   const app = useAppContext();
 
   return (
-    <div className="p-5 mb-4 mt-4 bg-light rounded-3 text-dark">
+    <div className="shadow p-5 mb-4 mt-4 bg-light rounded-3 text-dark">
       <Container fluid>
-        <h1 className="header">Organizational overview: </h1>
+        <h1 className="header">Organizational overview </h1>
         <p className="lead">
           License and service information for the organization
         </p>
