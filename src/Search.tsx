@@ -1,12 +1,12 @@
 import { FormEvent, useEffect, useState } from "react";
 
-import {
+/*import {
   Button,
   Container,
   Card
-} from 'react-bootstrap';
+} from 'react-bootstrap';*/
 
-import { NavLink as RouterNavLink, BrowserRouterProps } from 'react-router-dom';
+import {   BrowserRouterProps } from 'react-router-dom';
 import UserComponent from "./UserComponent";
 import './Search.css'
 import { Client } from "@microsoft/microsoft-graph-client";
