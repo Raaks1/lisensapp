@@ -77,7 +77,7 @@ export default function Licenses(_props: HashRouterProps) {
   return (
     <div className="shadow p-5 mb-4 mt-4 bg-light rounded-3 text-dark ">
       <Container fluid>
-        <h1 className="header">Microsoft 365 Licenses </h1>
+        <h1 className="header">Microsoft Office 365 Licenses </h1>
         <p className="lead">Users' license and service information</p>
 
         <AuthenticatedTemplate>
