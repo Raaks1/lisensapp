@@ -45,7 +45,6 @@ jobs:
 
     - name: npm install, build, and test
       run: |
-        `--passWithNoTests` 
         npm install
         CI=false npm run build --if-present
         npm run test --if-present
