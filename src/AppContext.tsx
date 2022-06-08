@@ -13,8 +13,8 @@ import React, {
   useState,
   MouseEventHandler,
   useEffect,
-  ReactChild,
-  ReactChildren,
+ /* ReactChild,
+  ReactChildren,*/
 } from "react";
 
 import { AuthCodeMSALBrowserAuthenticationProvider } from "@microsoft/microsoft-graph-client/authProviders/authCodeMsalBrowser";

@@ -1,9 +1,9 @@
-import React from "react";
-import { Button, Container, Card } from "react-bootstrap";
-import { BrowserRouterProps, HashRouterProps } from "react-router-dom";
+/*import React from "react";*/
+import {  Container, Card } from "react-bootstrap";
+import { /*BrowserRouterProps,*/ HashRouterProps } from "react-router-dom";
 import {
   AuthenticatedTemplate,
-  UnauthenticatedTemplate,
+ 
 } from "@azure/msal-react";
 import { useAppContext } from "./AppContext";
 import { Fragment } from "react";

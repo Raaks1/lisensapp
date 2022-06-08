@@ -1,23 +1,22 @@
 import {
   Client,
-  GraphRequestOptions,
+ /* GraphRequestOptions,
   PageCollection,
-  PageIterator,
+  PageIterator,*/
 } from "@microsoft/microsoft-graph-client";
 import { AuthCodeMSALBrowserAuthenticationProvider } from "@microsoft/microsoft-graph-client/authProviders/authCodeMsalBrowser";
-import { endOfWeek, startOfWeek } from "date-fns";
-import { zonedTimeToUtc } from "date-fns-tz";
+
 import {
   User,
   AssignedPlan,
   Organization,
 } from "@microsoft/microsoft-graph-types";
 import {
-  AssignedLicense,
+ /* AssignedLicense,*/
   LicenseDetails,
   SubscribedSku,
 } from "@microsoft/microsoft-graph-types";
-import { useState } from "react";
+
 
 let graphClient: Client | undefined = undefined;
 

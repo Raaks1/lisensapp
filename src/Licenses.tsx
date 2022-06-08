@@ -1,5 +1,5 @@
 import { Button, Container, Card } from "react-bootstrap";
-import { BrowserRouterProps, HashRouterProps } from "react-router-dom";
+import { HashRouterProps } from "react-router-dom";
 import {
   AuthenticatedTemplate,
   UnauthenticatedTemplate,
@@ -9,8 +9,7 @@ import {
   Fragment,
   useCallback,
   useEffect,
-  useMemo,
-  useRef,
+ 
   useState,
 } from "react";
 import "./Licences.css";
