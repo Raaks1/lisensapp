@@ -71,22 +71,28 @@ jobs:
     needs: build
     environment:
       name: 'Development'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }} 
 
     steps:
     - name: Download artifact from build job
       uses: actions/download-artifact@v3
       with:
         name: node-app
-        
-  steps:
-  - name: Download artifact from build job
-    uses: actions/download-artifact@v2
-    with:
-      name: node-app
+         
+      steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+           name: node-app
       
-  - name: unzip artifact for deployment
-    run: unzip release.zip   
+            - name: unzip artifact for deployment
+              run: unzip release.zip
+              
+              
+  - name: add process.json
+    run: |
+      echo '{ script: "serve", env: { PM2_SERVE_SPA: "true", PM2_SERVE_HOMEPAGE: "/index.html" } }' >> build/process.json
+          
 
   - name: 'Deploy to Azure WebApp'
     id: deploy-to-webapp 
