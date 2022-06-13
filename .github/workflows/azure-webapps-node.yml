@@ -4,7 +4,7 @@ name: JavaScript CI
 on: [push]
 
 env:
-  AZURE_WEBAPP_NAME: lisensapp  # set this to your application's name
+  AZURE_WEBAPP_NAME: O365Licenses  # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: './src'      # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '14.x'                # set this to the node version to use
 
