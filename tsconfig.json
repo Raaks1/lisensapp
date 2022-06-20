@@ -21,13 +21,12 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": "./src", /* -added for test  */
-    "types": [], /* -added for test  */
     
   },
   "include": [
     "src"
-  ],
-  "exclude": ["node_modules", "lib"],/* -added for test  */
+  ]
+ 
 
   
 }
