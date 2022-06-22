@@ -16,7 +16,7 @@ import config from "./Config";
 const msalInstance = new PublicClientApplication({
   auth: {
     clientId: config.appId,
-    redirectUri: config.redirectUri,
+    /*redirectUri: config.redirectUri,*/
   },
   cache: {
     cacheLocation: "sessionStorage",
