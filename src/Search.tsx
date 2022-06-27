@@ -12,13 +12,13 @@ import './Search.css'
 import { Client } from "@microsoft/microsoft-graph-client";
 import { AuthCodeMSALBrowserAuthenticationProvider } from "@microsoft/microsoft-graph-client/authProviders/authCodeMsalBrowser";
 import { useAppContext } from "./AppContext";
-import { AssignedPlan, LicenseDetails, SubscribedSku } from "@microsoft/microsoft-graph-types";
+import { AssignedPlan, LicenseDetails, SubscribedSku, User } from "@microsoft/microsoft-graph-types";
 
 
 export interface ISearch {
     [x: string]: any;
     displayName: string;
-  
+    principalName: string;
     service: any;
     skuId: any;
     assignedPlan: AssignedPlan[];
