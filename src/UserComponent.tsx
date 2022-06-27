@@ -39,6 +39,8 @@ const UserComponent = (props: { user: ISearch }) => {
     <div className="p1">
     <div className="h3">Name: </div>{user.displayName}</div>
     <div className="p1">
+    <div className="h3">PrincipalName: </div>{user.PrincipalName} </div> 
+    <div className="p1">
     <div className="h3"> User Id:</div> {user.id} </div>
     
    
