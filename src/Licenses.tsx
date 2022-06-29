@@ -200,7 +200,7 @@ export default function Licenses(_props: HashRouterProps) {
     i
   ) => (
     <div key={app.user?.id + "_" + i}>
-      <span className="spanners"> Service:</span> {service}{" "}
+   <p>  <span className="spanners"> Service:</span> {service}{" "}
      
    
  
@@ -224,7 +224,7 @@ export default function Licenses(_props: HashRouterProps) {
                                   <span className="spans">{appliesTo}</span>{" "}*/}
                             </>
                           )
-                        )}
+                        )}</p> 
                            </div>
   )
 )}</Fragment>))}
