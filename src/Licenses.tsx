@@ -213,7 +213,7 @@ export default function Licenses(_props: HashRouterProps) {
                         {lisens.servicePlans?.map(
                           ({ servicePlanName, servicePlanId, appliesTo }) => (
                             <>
-                              <span className="spanners"> Service:</span> {service}
+                              
                               <span className="spanners">ServicePlanName:</span>{" "}
                               <span className="details">{servicePlanName}</span>{" "}
                               <span className="spanners">ServicePlanId: </span>
