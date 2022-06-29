@@ -82,7 +82,7 @@ const UserComponent = (props: { user: ISearch }) => {
      <div className="hider">     <Card.Header className="headerstwo"> <h4 className="header">ServiceplanInfo:</h4></Card.Header></div>
   <Card.Body className="cards">  {app.org?.map((org) =>  ( <Fragment key={org?.id}>
 
-  <>
+
                       {" "}
                       {org.assignedPlans?.map(
                         (
@@ -101,16 +101,16 @@ const UserComponent = (props: { user: ISearch }) => {
                           </p>
                         )
                       )}
-                    </>
+                    
                 
                     </Fragment>))}</Card.Body>
-
+                    <Card.Body className="cards">
      {lisens.servicePlans?.map(({ servicePlanName, servicePlanId, appliesTo }) => (<p key={servicePlanId}>
 
   
        <span id="test">ServicePlanName: </span>{servicePlanName} <span id="test">ServicePlanId:</span> {servicePlanId} <span id="test">AppliesTo: </span> {appliesTo}</p>))}   
    
-
+       </Card.Body>
    </Fragment>))}</div> 
    {/*  <p><h6>Assigned Plans:  </h6>
       
