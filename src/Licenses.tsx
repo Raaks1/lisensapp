@@ -205,7 +205,9 @@ export default function Licenses(_props: HashRouterProps) {
    
  
 
-
+      </p>
+  )
+)}</Fragment>))}
 
 
 
@@ -225,9 +227,7 @@ export default function Licenses(_props: HashRouterProps) {
                             </p>
                           )
                         )}
-                           </p>
-  )
-)}</Fragment>))}
+
                       </Card.Body>
                     </Fragment>
                   ))}
