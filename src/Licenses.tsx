@@ -200,7 +200,7 @@ export default function Licenses(_props: HashRouterProps) {
     i
   ) => (
     <p key={app.user?.id + "_" + i}>
-      <span id="spanners"> Service:</span> {service}{" "}
+      <span className="spanners"> Service:</span> {service}{" "}
      
    
     </p>
