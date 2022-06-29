@@ -139,7 +139,7 @@ export default function Licenses(_props: HashRouterProps) {
                       {allUsersLicenses[user.id || ""]?.assignedPlans?.map(
                         (p) => (
                           <>
-                        <span className="detail">    Service:</span> {p?.service} {p.servicePlanId}
+                     
                             <span className="detail"> Service:</span> {p?.service}
                           </>
                         )
@@ -200,7 +200,7 @@ export default function Licenses(_props: HashRouterProps) {
     i
   ) => (
     <p key={app.user?.id + "_" + i}>
-      <span id="detail"> Service:</span> {service}{" "}
+      <span id="spanners"> Service:</span> {service}{" "}
      
    
     </p>
