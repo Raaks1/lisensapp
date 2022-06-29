@@ -80,7 +80,7 @@ const UserComponent = (props: { user: ISearch }) => {
      <p><span className='detail'>Id:</span> {lisens.id}</p></Card.Body>
        
      <div className="hider">     <Card.Header className="headerstwo"> <h4 className="header">ServiceplanInfo:</h4></Card.Header></div>
-  <Card.Body className="cards">  <div>{app.org?.map((org) =>  ( <div key={user?.id}>
+  <Card.Body className="cards">  <div>{app.org?.map((org) =>  ( <Fragment key={user?.id}>
 
   <>
                       {" "}
@@ -95,7 +95,7 @@ const UserComponent = (props: { user: ISearch }) => {
                           i
                         ) => (
                           <p key={app.user?.id + "_" + i}>
-                            <span id="service"> Service:</span> {service}{" "}
+                            <span id="test"> Service:</span> {service}{" "}
                            
                          
                           </p>
@@ -103,12 +103,12 @@ const UserComponent = (props: { user: ISearch }) => {
                       )}
                     </>
                 
-
+                    </Fragment>))}
 
      {lisens.servicePlans?.map(({ servicePlanName, servicePlanId, appliesTo }) => (<p key={servicePlanId}>
 
   
-       <span id="test">ServicePlanName: </span>{servicePlanName} <span id="test">ServicePlanId:</span> {servicePlanId} <span id="test">AppliesTo: </span> {appliesTo}</p>))}   </div>))}
+       <span id="test">ServicePlanName: </span>{servicePlanName} <span id="test">ServicePlanId:</span> {servicePlanId} <span id="test">AppliesTo: </span> {appliesTo}</p>))}   
      </div></Card.Body> 
 
    </Fragment>))}</div> 
