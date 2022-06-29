@@ -136,20 +136,21 @@ export default function Licenses(_props: HashRouterProps) {
                     {" "}
                     <p>
                       {" "}
-                      {allUsersLicenses[user.id || ""]?.subscribedSkus?.map(
+                      {allUsersLicenses[user.id || ""]?.assignedPlans?.map(
                         (p) => (
                           <>
-                            Service: {p.skuId} {p.skuPartNumber}
+                            Service: {p.service} {p.servicePlanId}
+                            <span className="detail"> Service:</span> {p.service}
                           </>
                         )
                       )}
                     </p>
                     <p>
                       {allUsersLicenses[user.id || ""]?.users?.map((u) => (
-                        <>DisplayName: {u.displayName}</>
+                        <>DisplayName: {u.assignedPlans}</>
                       ))}
                     </p>
-                    <p>No Info </p>
+                    <p>No info</p>
                   </Card.Body>
                   <div className="hider">
                     {" "}
@@ -181,6 +182,36 @@ export default function Licenses(_props: HashRouterProps) {
                         </Card.Header>{" "}
                       </div>
                       <Card.Body className="headersone">
+
+
+
+                      {app.org?.map((org) =>  ( <Fragment key={org?.id}>
+
+
+{" "}
+{org.assignedPlans?.map(
+  (
+    {
+      service,
+      servicePlanId,
+      capabilityStatus,
+      assignedDateTime,
+    },
+    i
+  ) => (
+    <p key={app.user?.id + "_" + i}>
+      <span id="detail"> Service:</span> {service}{" "}
+     
+   
+    </p>
+  )
+)}
+
+
+</Fragment>))}
+
+
+
                         {lisens.servicePlans?.map(
                           ({ servicePlanName, servicePlanId, appliesTo }) => (
                             <p key={servicePlanId}>
