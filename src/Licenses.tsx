@@ -203,18 +203,17 @@ export default function Licenses(_props: HashRouterProps) {
       <span className="spanners"> Service:</span> {service}{" "}
      
    
-    </p>
-  )
-)}
+ 
 
 
-</Fragment>))}
+
 
 
 
                         {lisens.servicePlans?.map(
                           ({ servicePlanName, servicePlanId, appliesTo }) => (
                             <p key={servicePlanId}>
+                              <span className="spanners"> Service:</span> {service}
                               <span className="spanners">ServicePlanName:</span>{" "}
                               <span className="details">{servicePlanName}</span>{" "}
                               <span className="spanners">ServicePlanId: </span>
@@ -226,6 +225,9 @@ export default function Licenses(_props: HashRouterProps) {
                             </p>
                           )
                         )}
+                           </p>
+  )
+)}</Fragment>))}
                       </Card.Body>
                     </Fragment>
                   ))}
