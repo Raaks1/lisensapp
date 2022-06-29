@@ -80,9 +80,35 @@ const UserComponent = (props: { user: ISearch }) => {
      <p><span className='detail'>Id:</span> {lisens.id}</p></Card.Body>
        
      <div className="hider">     <Card.Header className="headerstwo"> <h4 className="header">ServiceplanInfo:</h4></Card.Header></div>
-  <Card.Body className="cards">  <div>
+  <Card.Body className="cards">  <div>{app.org?.map((org) =>  ( <div key={user?.id}>
+
+  <>
+                      {" "}
+                      {org.assignedPlans?.map(
+                        (
+                          {
+                            service,
+                            servicePlanId,
+                            capabilityStatus,
+                            assignedDateTime,
+                          },
+                          i
+                        ) => (
+                          <p key={app.user?.id + "_" + i}>
+                            <span id="service"> Service:</span> {service}{" "}
+                           
+                         
+                          </p>
+                        )
+                      )}
+                    </>
+                
+
+
      {lisens.servicePlans?.map(({ servicePlanName, servicePlanId, appliesTo }) => (<p key={servicePlanId}>
-       <span id="test">ServicePlanName: </span>{servicePlanName} <span id="test">ServicePlanId:</span> {servicePlanId} <span id="test">AppliesTo: </span> {appliesTo}</p>))}
+
+  
+       <span id="test">ServicePlanName: </span>{servicePlanName} <span id="test">ServicePlanId:</span> {servicePlanId} <span id="test">AppliesTo: </span> {appliesTo}</p>))}   </div>))}
      </div></Card.Body> 
 
    </Fragment>))}</div> 
