@@ -192,7 +192,7 @@ export default function Licenses(_props: HashRouterProps) {
               padding: "15px",
             }}
           >
-           
+           <div className="">
 
                       {app.org?.map((org) =>  ( <Fragment key={org?.id}>
 
@@ -235,7 +235,7 @@ export default function Licenses(_props: HashRouterProps) {
                                   <span className="spans">{appliesTo}</span>{" "}*/}
                             </p>
                           )
-                        )}
+                        )}</div>
  </Container>
                       </Card.Body>
                     </Fragment>
