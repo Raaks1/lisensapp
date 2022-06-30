@@ -183,7 +183,15 @@ export default function Licenses(_props: HashRouterProps) {
                       </div>
                       <Card.Body className="headersone">
 
-
+                      <Container
+            style={{
+              display: "flex",
+              justifyContent: "start-left",
+              margin: "auto",
+              padding: "15px",
+            }}
+          >
+           
 
                       {app.org?.map((org) =>  ( <Fragment key={org?.id}>
 
@@ -227,7 +235,7 @@ export default function Licenses(_props: HashRouterProps) {
                             </p>
                           )
                         )}
-
+ </Container>
                       </Card.Body>
                     </Fragment>
                   ))}
