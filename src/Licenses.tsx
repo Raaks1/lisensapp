@@ -192,7 +192,7 @@ export default function Licenses(_props: HashRouterProps) {
               padding: "15px",
             }}
           >
-           <div className="">
+           <div className="auto-me">
 
                       {app.org?.map((org) =>  ( <Fragment key={org?.id}>
 
