@@ -185,7 +185,8 @@ export default function Licenses(_props: HashRouterProps) {
 
                       <Container
             style={{
-              display: "flex",
+              display: "flex-column",
+              
               justifyContent: "start-left",
               margin: "auto",
               padding: "15px",
