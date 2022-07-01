@@ -183,7 +183,7 @@ export default function Licenses(_props: HashRouterProps) {
                       </div>
                       <Card.Body className="headersone">
 
-                      <Container
+              {/*}        <Container
             style={{
               display: "flex-column",
               
@@ -192,7 +192,7 @@ export default function Licenses(_props: HashRouterProps) {
               padding: "15px",
             }}
           >
-           <div className="auto-me">
+         {/*}  <div className="auto-me">
 
                       {app.org?.map((org) =>  ( <Fragment key={org?.id}>
 
@@ -216,7 +216,7 @@ export default function Licenses(_props: HashRouterProps) {
 
       </p>
   )
-)}</Fragment>))}
+)}</Fragment>))}*/}
 
 
 
@@ -235,8 +235,8 @@ export default function Licenses(_props: HashRouterProps) {
                                   <span className="spans">{appliesTo}</span>{" "}*/}
                             </p>
                           )
-                        )}</div>
- </Container>
+                        )}
+ 
                       </Card.Body>
                     </Fragment>
                   ))}
