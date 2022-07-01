@@ -18,7 +18,7 @@ import { AssignedPlan, LicenseDetails, SubscribedSku } from "@microsoft/microsof
 export interface ISearch {
     [x: string]: any;
     displayName: string;
-    principalName: string;
+    principalName: any;
     service: any;
     skuId: any;
     assignedPlan: AssignedPlan[];
